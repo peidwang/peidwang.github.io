@@ -68,7 +68,7 @@ li a:hover {
 
 
 #landing-image{
-	background-image:url("/Users/PeterWang/Desktop/html/landimage.jpg");
+	background-image:url("landimage.jpg");
 	background-repeat:no-repeat;
 	background-position:center bottom;
 	background-attachment:fixed;
