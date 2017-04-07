@@ -126,13 +126,12 @@ li a:hover {
 }
 
 
-h2 {
+#welcome {
     color:white;
     text-shadow: 5px 5px black;
 }
 
 div.container4 {
-    
     position: relative }
 div.container4 h3 {
     margin: 0;
@@ -152,10 +151,20 @@ div.container4 p {
 	padding-top:0%;
 	margin-top:0%;
 }
+#resume-header{
+	text-align:left;
+	padding-top:0%;
+	margin-top:0%;
+}
 
-p {
+#paragraph {
     text-indent: 20px;
 }
+
+#resume-body {
+    font-size: 18px;
+}
+
 
 .site-footer{
 	border-top:1px solid #e8e8e8;
