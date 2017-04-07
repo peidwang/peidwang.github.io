@@ -1,23 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-        <title>Resume</title>
-        
-        <meta charset=utf-8>
-		
-		<link rel="stylesheet" href="style.css">
+        <title>Resume | Peidong Wang</title>
+           <meta charset=utf-8>
 		<link rel="stylesheet" href="bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
     </head>
     
     
    <body>
        <div>
         <ul>
-            <li style="float:left"><a class="active" href="index.html">Peidong Wang</a></li> 
+            <li style="float:left" id="resumetop"><a class="active" href="index.html">Peidong Wang</a></li> 
             <li><a href="contact.html" >Contact</a></li>
             <li><a href="resume.html">Resume</a></li>
         </ul>
        </div>
-       <h1> </h1>
+         <div class="container">
+<br>
+<h3 id="resume-header" class="page-header">Education</h3>
+<p id="resume-body">
+09/2015 - Present &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; University of Wisconsin-Madison, U.S.A <br>
+09/2012 - 07/2015 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The High School Attached to Northwest Normal University, PRC <br>
+09/2009 - 06/2012 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Second Middle School Attached to Northwest Normal University, PRC <br>
+<br>
+</p>
+
+<h3 id="resume-header" class="page-header">Work &amp; Research Experience</h3>
+<p id="resume-body">
+01/2017 - Present &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CS 302 TA in Computer Science Department, UW-Madison <br>
+09/2016 - Present &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Undergraduate researcher in Center for Sustainability and the Global Environment at UW-Madison <br>
+05/2016 - 09/2016 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Research assistant in College of Atmospheric Science, Lanzhou University, PRC<br> 
+08/2013 - 12/2013 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Research assistant in College of Pastoral Agriculture, Lanzhou University, PRC<br>
+<br>    
+</p>
+
+<h3 id="resume-header" class="page-header">Awards</h3>
+<p id="resume-body">
+    2017 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Honorable Mention</b> in 2017 Interdisciplinary Contest In Modeling, COMAP <br>
+    2017 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Dean's List</b> in College of Letters and Science, UW-Madison <br>
+    2016 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Dean's List</b> in College of Letters and Science, UW-Madison <br>
+<br> 
+</p>
+            
+<h3 id="resume-header" class="page-header">Publications</h3>
+<p id="resume-body" style="margin-left: 0; text-indent: 2em">
+    Xia Zeng-run, <b>Wang Pei-dong</b>, Jia Wen, Wei Li, Mi Li, Wang Suo-min (2014) Effect of K<sup>+</sup> on the Growth, Ion Absorption and Distribution of <i>Apocynum Venetum</i> Under Salt Stress. <i>Pratacultural Science</i> 31 (11), pages 2088-2094<br> 
+<br>
+</p>
+             
+<h3 id="resume-header" class="page-header">Volunteer &amp; Extracurricular Activities</h3>
+<p id="resume-body">
+08/2016 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Volunteer at The 9th International Symposium on Molecular Breeding of Forage and Turf, Lanzhou, PRC <br>
+09/2015 - 02/2017 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Member of UW-Madison Fishing Team<br>
+10/2012 - 09/2014 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; General Director of Bo Yuan Model United Nations in High School Attached to Northwest Normal University<br>
+03/2014 - 05/2015 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Volunteer of Sunshine Charity for homeless pets<br>
+2008-2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bass in school choir team both in middle school and high school<br>
+<br> 
+</p>
+     </div>
+       
+       
+       <footer class="site-footer">
+			<div class="footer-col-wrapper">
+				<div class="container">
+					<div class="row">
+						<div id="end" class="col-md-12">
+                             <div class="btn-to_top">
+                            <a href="#resumetop" class="button_to_top"><span>Back to top</span></a> 
+                </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</footer>
+
     </body>
