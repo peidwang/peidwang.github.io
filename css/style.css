@@ -1,0 +1,231 @@
+ul {
+    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(4, 104, 52);
+    
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgb(2, 68, 34);
+    color: white;
+}
+
+.btn-group .button {
+    background-color: rgb(4, 104, 52);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    position:relative;
+    transition: all 0.5s;
+    
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.btn-to_top .button_to_top {
+    background-color: rgb(4, 104, 52);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    position:relative;
+    transition: all 0.5s;
+    
+}
+.button_to_top span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button_to_top span:after {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button_to_top:hover span {
+  padding-right: 20px;
+}
+
+.button_to_top:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+#landing-image{
+	background-image:url("../image/landimage.jpg");
+	background-repeat:no-repeat;
+	background-position:center bottom;
+	background-attachment:fixed;
+	background-size:cover;
+	width:100%;
+	height:100vh;
+	padding-left:0px;
+}
+
+#landing-image.jumbotron {
+    color: inherit;
+}
+
+#landing-container{
+	background-color:rgba(0, 0, 0, 0.43);
+	text-align:center;
+    top: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+#contact-image{
+	background-image:url("../image/contact.jpg");
+	background-repeat:no-repeat;
+	background-position:center bottom;
+	background-attachment:fixed;
+	background-size:cover;
+	width:100%;
+	height:47vh;
+	padding-left:0px;
+}
+
+
+#landing-img{
+    border-radius: 50%;
+}
+
+
+#welcome {
+    color:white;
+    text-shadow: 5px 5px black;
+}
+
+div.container4 {
+    position: relative }
+div.container4 h3 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+div.container4 p {
+    margin: 0;
+    position: absolute;
+    left: 10%;
+    margin-right: -90%; }
+
+#aboutme-header{
+	text-align:center;
+	padding-top:0%;
+	margin-top:0%;
+}
+#resume-header{
+	text-align:left;
+	padding-top:0%;
+	margin-top:0%;
+}
+
+#paragraph {
+    text-indent: 20px;
+}
+
+#resume-body {
+    font-size: 18px;
+}
+
+
+.site-footer{
+	border-top:1px solid #e8e8e8;
+		border-top-width: 1px;
+		border-top-style: solid;
+		border-top-color: rgb(232, 232, 232);
+	padding:30px 0;
+		padding-top: 30px;
+		padding-right: 0px;
+		padding-bottom: 30px;
+		padding-left: 0px;
+	background-color:#FFFFFF;
+	background-size:cover;
+	text-align:center;
+}
+
+.site-footer li{
+	display:inline;
+	padding:0.5%;
+}
+
+#end li{
+	list-style-type: none;
+}
+
+
+wechat:hover{
+    content: url('../image/wechat.jpg');
+    height:175px;
+    width:175px;
+    display:block;
+}
+
+.border-right{
+    border-right:1px solid #ccc!important} {
+    border-style: solid;
+    border-right: thick double black;
+}
+.border-left{
+    border-left:1px solid #ccc!important} {
+    border-style: solid;
+    border-left: thick double black;
+}
