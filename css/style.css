@@ -229,3 +229,21 @@ wechat:hover{
     border-style: solid;
     border-left: thick double black;
 }
+
+#contact {
+    text-indent: 40px;
+}
+
+circle {
+  background: #9e978e;
+  display: inline-block;
+  margin: 0 1em 1em 0;
+}
+.bottom {
+  height: 45px;
+  width: 45px;
+}
+.bottom {
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
