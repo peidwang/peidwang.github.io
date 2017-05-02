@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Food | Peidong Wang</title>
+        
+        <meta charset=utf-8>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+        
+    </head>
+    <body>
+                 <div id="indextop">
+        <ul>
+            <li style="float:left" id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="resume.html" class="border-right ">Resume</a></li>
+            <li><a href="food.html" class="border-right border-left">Food</a></li>
+        </ul>
+       </div>
+        
+        
+        <div id="aboutme" class="container">
+            <a id="aboutme"></a>
+              <br>
+            <h3 id="aboutme-header" class="page-header">Peidong's Little Kitchen</h3>
+            
+        </div>
+        
+        
+        <div class="col-md-2">
+        </div>
+      
+          <div class="col-md-4">
+
+              
+					<div class="img__wrap thumbnail portfolio-thumbnail">
+						<img src="image/food/beef.jpg"/>
+                        <p class="img__description">Beef Bourguignon</p>
+                        </div>
+              
+              <div class="img__wrap thumbnail portfolio-thumbnail">
+                      <img src="image/food/beefnoodles.jpg"/>
+                  <p class="img__description">Lanzhou Beef Noodles</p>
+					</div>
+              <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/dapanji2.jpg"/>
+                  <p class="img__description">Xinjiang DaPan Chicken</p>
+					</div>
+              <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/noodles.jpg"/>
+                  <p class="img__description">Lanzhou Ramen Noodles</p>
+					</div>
+              <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/dumplings.jpg"/>
+                  <p class="img__description">Dumplings</p>
+					</div>
+              
+				</div>
+     
+        <div class="col-md-4">
+					<div class="img__wrap thumbnail portfolio-thumbnail">
+						<img src="image/food/beefnoodles2.jpg"/>
+                        <p class="img__description">Lanzhou Beef Noodles</p>
+                        </div>
+              <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/dapanji.jpg"/>
+                  <p class="img__description">Xinjiang DaPan Chicken</p>
+					</div>
+            
+           <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/steak.jpg"/>
+               <p class="img__description">Steak</p>
+					</div>
+            <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/zhajiang.jpg"/>
+                <p class="img__description">Chajang Noodles</p>
+					</div>
+            <div class="img__wrap thumbnail portfolio-thumbnail">
+                        <img src="image/food/dumplings2.jpg"/>
+                <p class="img__description">Dumplings</p>
+					</div>
+				</div>
+        
+   <div class="col-md-2">
+        </div>
+  
+    </body>
