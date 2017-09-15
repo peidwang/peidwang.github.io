@@ -1,116 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-        <title>Contact | Peidong Wang</title>
-        
-         <meta charset=utf-8>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <head>
+        <title>Contact | Peidong Wang</title> 
+        <meta charset=utf-8>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
-</script>
+        <script>
+            $(document).ready(function(){
+                // Add smooth scrolling to all links
+                $("a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                        // Store hash
+                        var hash = this.hash;
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
+        </script>
     </head>
-    
-    
-   <body>
-         <div id="indextop">
-        <ul>
-            <li style="float:left" id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="resume.html" class="border-right ">Resume</a></li>
-            <li><a href="food.html" class="border-right border-left">My Kitchen</a></li>
-        </ul>
-       </div>
 
-	 
-           <div id="contact-image" class="jumbotron">
-			</div>
-       
-              
-			<div class="row">
-				<div class="col-md-6">
-                
-                
+    <body>
+        <div id="indextop">
+            <ul>
+                <li style="float:left" id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="resume.html" class="border-right ">Resume</a></li>
+                <li><a href="food.html" class="border-right border-left">My Kitchen</a>    </li>
+            </ul>
+        </div>
+
+        <div id="contact-image" class="jumbotron">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <p id="contact" style="font-weight: 700;">Email me at:</p>
-                    
-                    <a href="mailto:pwang232@wisc.edu"  target="_blank">
-								<p id="contact" class="fa fa-envelope" > pwang232@wisc.edu</p>
-                    </a>
-                    <br>
-                <p id="contact" style="font-weight: 700;">Or call me at:</p>
-                    
-                    <a href="tel:608-695-1160" target="_blank" >
-                <p id="contact" class="fa fa-phone"> 608-695-1160</p>
-                    </a>
-                    
-                     <p id="contact" style="font-weight: 700; ">Social Media:</p>
-                    
-                    <a href="https://www.linkedin.com/in/peidong-wang-61943a8b/" target="_blank">
-								<p id="contact" class="fa fa-linkedin" style="font-size:20px;"></p>
-                    </a>
-                   
-                    <a href="https://www.facebook.com/peidwang/" target="_blank">
-								<p id="contact" class="fa fa-facebook" style="font-size:20px;"> </p>
-                    </a>
-                   
-                      <a href="https://twitter.com/peidwang/" target="_blank">
-								<p id="contact" class="fa fa-twitter" style="font-size:20px;"> </p>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/peterw007/" target="_blank">
-								<p id="contact" class="fa fa-instagram" style="font-size:20px;"></p>
-                    </a>
 
-                    
-                </div>
-                
-                <div class="col-md-5">
-               <p id="paragraph" style="font-weight: 700; ">You can find me at:</p>
+                <a href="mailto:pwang232@wisc.edu"  target="_blank">
+                    <p id="contact" class="fa fa-envelope" > pwang232@wisc.edu</p>
+                </a>
+                <br>
+                <p id="contact" style="font-weight: 700;">Or call me at:</p>
+
+                <a href="tel:608-695-1160" target="_blank" >
+                    <p id="contact" class="fa fa-phone"> 608-695-1160</p>
+                </a>
+
+                <p id="contact" style="font-weight: 700; ">Social Media:</p>
+
+                <a href="https://www.linkedin.com/in/peidong-wang-61943a8b/" target="_blank">
+                    <p id="contact" class="fa fa-linkedin" style="font-size:20px;"></p>
+                </a>
+
+                <a href="https://www.facebook.com/peidwang/" target="_blank">
+                    <p id="contact" class="fa fa-facebook" style="font-size:20px;"> </p>
+                </a>
+
+                <a href="https://twitter.com/peidwang/" target="_blank">
+                    <p id="contact" class="fa fa-twitter" style="font-size:20px;"> </p>
+                </a>
+
+                <a href="https://www.instagram.com/peterw007/" target="_blank">
+                    <p id="contact" class="fa fa-instagram" style="font-size:20px;"></p>
+                </a>
+            </div>
+
+            <div class="col-md-5">
+                <p id="paragraph" style="font-weight: 700; ">You can find me at:</p>
                 <p id="paragraph">208 Enzyme Institute, 1710 University Ave. Madison,  WI 53706, USA</p>
-        
-                    
-                    <p id="paragraph"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7753.602695178645!2d-89.41382371937398!3d43.07503846736505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8807acc1ac873833%3A0x4a39fd8cdf855c09!2s1710+University+Ave%2C+Madison%2C+WI+53726!5e0!3m2!1sen!2sus!4v1493597844969" width="470" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></p>			
-				</div>
-                  </div>
-      
-       
-   <footer class="site-footer">
-			<div class="footer-col-wrapper">
-				<div class="container">
+                <p id="paragraph"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7753.602695178645!2d-89.41382371937398!3d43.07503846736505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8807acc1ac873833%3A0x4a39fd8cdf855c09!2s1710+University+Ave%2C+Madison%2C+WI+53726!5e0!3m2!1sen!2sus!4v1493597844969" width="470" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></p>			
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-col-wrapper">
+                <div class="container">
                     <p>&copy; 2017 Peidong Wang</p>
- 		    <p>Last update: August 21, 2017</p>
-				</div>
-			</div>
-			
-			
-		</footer>
-       
+                    <p>Last update: September 15, 2017</p>
+                </div>
+            </div>
+        </footer>
+
     </body>
