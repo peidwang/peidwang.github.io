@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>City | Peidong Wang</title> 
+        <meta charset=utf-8>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add smooth scrolling to all links
+                $("a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                        // Store hash
+                        var hash = this.hash;
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <ul>
+            <li id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
+            <li><a href="resume.html" class="border-right"><i>Curriculum Vitae</i></a></li>
+            <li class="dropdown"><a href="javascript:void(0)" class="dropbtn border-right">Photo Gallery &#9660;</a>
+                <div class="dropdown-content">
+                    <a href="food.html">My Kitchen</a>
+                    <a href="nature.html">Nature</a>
+                    <a href="city.html">City</a>
+                </div>
+            </li>
+            <li style="float:right" class="border-left"><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div id="city-image" class="jumbotron">
+        </div>
+
+        <div id="aboutme" class="container">
+            <a id="aboutme"></a>
+            <br>
+            <h3 id="aboutme-header" class="page-header">Cities</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-4">
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/Chicago_light.jpg">
+                    <p class="img__description">Chicago</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/firework.jpg">
+                    <p class="img__description">Madison</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/MET.jpg">
+                    <p class="img__description">The Metropolitan Museum of Art</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/NY_evening.jpg">
+                    <p class="img__description">New York</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/NY_evening2.jpg">
+                    <p class="img__description">New York</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/railroad.jpg">
+                    <p class="img__description">Madison</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/Time_Square.jpg">
+                    <p class="img__description">Time Square</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/city/Time_Square2.jpg">
+                    <p class="img__description">Time Square</p>
+                </div>
+            </div>
+
+
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-col-wrapper">
+                <div class="container">
+                    <p>&copy; 2017 Peidong Wang</p>
+                    <br>
+                    <p>Cover photo taken in Golden Gate Bridge, 2008</p>
+                    <p>Last update: Janurary 2, 2018</p>
+                </div>
+            </div>
+        </footer>
+    </body>

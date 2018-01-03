@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>About | Peidong Wang</title> 
+        <meta charset=utf-8>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add smooth scrolling to all links
+                $("a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                        // Store hash
+                        var hash = this.hash;
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+
+        <ul>
+            <li id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
+            <li><a href="resume.html" class="border-right"><i>Curriculum Vitae</i></a></li>
+            <li class="dropdown"><a href="javascript:void(0)" class="dropbtn border-right">Photo Gallery &#9660;</a>
+                <div class="dropdown-content">
+                    <a href="food.html">My Kitchen</a>
+                    <a href="nature.html">Nature</a>
+                    <a href="city.html">City</a>
+                </div>
+            </li>
+            <li style="float:right" class="border-left"><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div id="landing-image" class="jumbotron">
+            <div id="landing-container" class="container-fluid col-xs-12 text-center">
+                <p></p>
+                <h2 id="welcome">Welcome to Peidong Wang's page.</h2>
+                <p></p>
+                <div class="btn-group">
+                    <a href="#aboutme" class="button"><span>About Me</span></a>
+                    <a href="#current_research" class="button"><span>Current Research Porject</span></a>
+
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="aboutme" class="container">
+            <a id="aboutme"></a>
+            <br>
+            <h3 id="aboutme-header" class="page-header">About Me</h3>
+        </div>
+
+        <div class="container">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <p id="paragraph">Hello, I'm Peidong.</p>
+                    <p id="paragraph">I am a junior undergraduate at University of Wisconsin-Madison double majoring in <a href="http://aos.wisc.edu" target="_blank">Atmospheric &amp; Oceanic Sciences</a>, <a href="http://www.math.wisc.edu" target="_blank">Applied Mathematics</a>, and with a certificate in <a href="https://www.cs.wisc.edu" target="_blank">Computer Science</a>. </p>
+                    <p id="paragraph">I am a fan of traveling, nature exploring, photography, and cooking.</p>
+                    <p id="paragraph">My favorite place is Antarctica, since I like cold weather. So I came to Madison since it was the coldest place that I have ever applied.</p>
+                    <p></p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="thumbnail portfolio-thumbnail">
+                        <img src="image/aboutme.jpg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="current_research" class="container">
+            <a id="aboutme"></a>
+            <br>
+            <a id="current_positions"></a>
+            <h3 id="aboutme-header" class="page-header">Current Research Project</h3>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <b>Summer time formaldehyde (HCHO) diurnal cycle from CMAQ model</b>
+                    <div class="thumbnail portfolio-thumbnail">
+                        <img src="image/CMAQ_HCHO.gif"/>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <br>
+                    <p id="paragraph">I started doing research with Prof. <a href="https://hollowaygroup.org" target="_blank">Tracey Holloway</a> at UW-Madison on atmospheric science since Fall 2016. Currently I am focusing on assessing the uncertainty of satellite in observing ambient formaldehyde (HCHO) in the U.S. over the past 10 years. I am also comparing satellite retrievals with <i>in situ</i> measurements, numerical models, and emission reports to explain HCHO trends.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-col-wrapper">
+                <div class="container">
+                    <p>&copy; 2017 Peidong Wang</p>
+                    <br>
+                    <p>Cover photo taken in Yosemite, 2008</p>
+                    <p>Last update: Janurary 2, 2018</p>
+                </div>
+            </div>
+        </footer>
+    </body>
