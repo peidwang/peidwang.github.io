@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122229911-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-122229911-1');
+    </script>
+
+        <title>My Kitchen | Peidong Wang</title> 
+        <meta charset=utf-8>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add smooth scrolling to all links
+                $("a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+                        // Store hash
+                        var hash = this.hash;
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <ul>
+            <li id="resumetop"><a class="active border-right" href="index.html">Peidong Wang</a></li> 
+            <li><a href="resume.html" class="border-right"><i>Curriculum Vitae</i></a></li>
+            <li class="dropdown"><a href="javascript:void(0)" class="dropbtn border-right">Photo Gallery &#9660;</a>
+                <div class="dropdown-content">
+                    <a href="food.html">My Kitchen</a>
+                    <a href="nature.html">Nature</a>
+                    <a href="city.html">City</a>
+                </div>
+            </li>
+            <li style="float:right" class="border-left"><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div id="food-image" class="jumbotron">
+        </div>
+
+        <div id="aboutme" class="container">
+            <a id="aboutme"></a>
+            <br>
+            <h3 id="aboutme-header" class="page-header">Food I made</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-4">
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/beef.jpg"/>
+                    <p class="img__description">Beef Bourguignon</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/beefnoodles.jpg"/>
+                    <p class="img__description">Lanzhou Beef Noodles</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/chow_mein.jpg"/>
+                    <p class="img__description">chow mein</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/jiaohuaji1.jpg"/>
+                    <p class="img__description">Beggar's Chicken</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/dapanji2.jpg"/>
+                    <p class="img__description">Xinjiang DaPan Chicken</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/noodles.jpg"/>
+                    <p class="img__description">Lanzhou Ramen Noodles</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/beef_curry.jpg"/>
+                    <p class="img__description">Beef Curry</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/dumplings.jpg"/>
+                    <p class="img__description">Dumplings</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/beefnoodles2.jpg"/>
+                    <p class="img__description">Lanzhou Beef Noodles</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/fruitpunch.jpg"/>
+                    <p class="img__description">Fruit Punch</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/dapanji.jpg"/>
+                    <p class="img__description">Xinjiang DaPan Chicken</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/jiaohuaji2.jpg"/>
+                    <p class="img__description">Beggar's Chicken</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/steak.jpg"/>
+                    <p class="img__description">Steak</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/zhajiang.jpg"/>
+                    <p class="img__description">Chajang Noodles</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/zongzi.jpg"/>
+                    <p class="img__description">Zongzi (Traditional food for Dragon Boat Festival)</p>
+                </div>
+                <div class="img__wrap thumbnail portfolio-thumbnail">
+                    <img src="image/food/dumplings2.jpg"/>
+                    <p class="img__description">Dumplings</p>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-col-wrapper">
+                <div class="container">
+                    <p>Cover photo taken in California, 2008</p>
+                    <p>Last update: January 2, 2018</p>
+                    <br>
+                    <p>&copy; Peidong Wang</p>
+                </div>
+            </div>
+        </footer>
+    </body>
