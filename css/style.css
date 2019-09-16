@@ -143,6 +143,7 @@ li.dropdown {
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    height: 100vh;
     text-align: center;
 }
 
