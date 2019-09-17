@@ -137,14 +137,13 @@ li.dropdown {
 }
 
 #landing-image{
-    background: url("../image/landimage.jpg");
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    height: 100vh;
-    text-align: center;
+    padding: 12em 0 10em 0;
+	background-image: url('../image/landimage.jpg');
+	background-size: cover;
+	background-position: top;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	text-align: center;
 }
 
 #landing-image.jumbotron {
