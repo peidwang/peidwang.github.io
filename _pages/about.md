@@ -27,7 +27,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a transitional postdoctoral researcher working with Dr. <a href="https://www.ssolomongroup.mit.edu" target="_blank">Susan Solomon</a> at the Massachusetts Institute of Technology, with whom I also completed my PhD. My doctoral research focuses on detecting and understanding the processes that drive stratospheric ozone variability.
+My name is Peidong Wang (王沛东), I am now a transitional postdoctoral researcher working with Dr. <a href="https://www.ssolomongroup.mit.edu" target="_blank">Susan Solomon</a> at the Massachusetts Institute of Technology, with whom I also completed my PhD. My doctoral research focuses on detecting and understanding the processes that drive stratospheric ozone variability.
 
 I completed my undergraduate studies at the University of Wisconsin-Madison, where I double majored in Atmospheric & Oceanic Sciences and Applied Mathematics, with a minor (certificate) in Computer Science. During that time, I was advised by Dr. <a href="https://hollowaygroup.org" target="_blank">Tracey Holloway</a>.
 

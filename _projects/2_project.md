@@ -1,81 +1,25 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: Chlorine activation on volcanic and wildire aerosols
+description: 
+img: assets/img/any_photo.jpg
 importance: 2
-category: work
-giscus_comments: true
+category: 
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+Heterogeneous chlorine activation is a major driver for stratospheric ozone depletion and is understood to happen mainly on polar stratospheric clouds (PSCs) at temperatures below about 195 K. The 2020 Australian wildfire released large amounts of organic aerosols, whose chemical properties under stratospheric conditions are virtually unknown.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+We combined the past 30 years of satellite data to estimate chlorine activation after a series of volcanic eruptions and wildfires of different magnitudes. We found that chlorine activation after major wildfires can happen at warm mid-latitude temperatures even above 220 K. Model incorporating such mechanism also shows remarkable agreement with the observations.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+<strong>Related work: </strong>  <a href="https://doi.org/10.1073/pnas.2213910120" target="_blank">Wang et al. (2023)</a>; <a href="https://doi.org/10.1038/s41586-022-05683-0" target="_blank">Solomon et al. (2023)</a>; <a href="https://doi.org/10.1029/2024GL108649" target="_blank">Zhang et al. (2024)</a>; <a href="https://doi.org/10.1029/2024GL110412" target="_blank">Wang and Solomon (2024)</a>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/wildfire_chem_mech.jpg" title="" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
+    A mechanism for wildfire-driven ozone depletion (image from <a href="https://www.nature.com/articles/d41586-023-00598-w" target="_blank">McNeill and Thornton, 2023</a>)
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}
