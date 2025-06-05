@@ -9,7 +9,7 @@ nav_order: 3
 
 <!-- _pages/publications.md -->
 
-A full list of publications is available on <a href="https://scholar.google.com/citations?user=FyQo-RIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
+A full list of publications is also available on <a href="https://scholar.google.com/citations?user=FyQo-RIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
 
 <!-- Bibsearch Feature -->
 
