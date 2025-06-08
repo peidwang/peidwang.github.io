@@ -12,7 +12,6 @@ Man-made chlorofluorocarbons (CFCs) are the main reason for the Antarctic ozone 
 
 The ocean uptake of these molecules was long been thought as a minor loss pathway. As anthropogenic emissions went down, natural losses become more important. We used a hierarchy of models to study the ocean uptake of CFCs, HCFCs, and HFCs and assess the impact on emission estimations.
 
-<strong>Related work: </strong>  <a href="https://doi.org/10.1073/pnas.2021528118" target="_blank">Wang et al. (2021)</a>; <a href="https://doi.org/10.1029/2023GL105472" target="_blank">Wang et al. (2023)</a>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/ocn_model_schematics.jpg" title="" class="img-fluid rounded z-depth-1" %}
@@ -22,3 +21,8 @@ The ocean uptake of these molecules was long been thought as a minor loss pathwa
     Schematic illustrating the hierarchy of coupled atmosphere–ocean models used to simulate the oceanic uptake and outgassing of various halocarbons regulated under the Montreal Protocol.
 </div>
 
+<h2>Related Work</h2>
+<div class="publications">
+  {% bibliography -f papers -q @*[key=wang_influence_2023]* %}
+  {% bibliography -f papers -q @*[key=wang_effects_2021]* %}
+</div>

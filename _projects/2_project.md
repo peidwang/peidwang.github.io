@@ -12,8 +12,6 @@ Heterogeneous chlorine activation is a major driver for stratospheric ozone depl
 
 We combined the past 30 years of satellite data to estimate chlorine activation after a series of volcanic eruptions and wildfires of different magnitudes. We found that chlorine activation after major wildfires can happen at warm mid-latitude temperatures even above 220 K. Model incorporating such mechanism also shows remarkable agreement with the observations.
 
-<strong>Related work: </strong>  <a href="https://doi.org/10.1073/pnas.2213910120" target="_blank">Wang et al. (2023)</a>; <a href="https://doi.org/10.1038/s41586-022-05683-0" target="_blank">Solomon et al. (2023)</a>; <a href="https://doi.org/10.1029/2024GL108649" target="_blank">Zhang et al. (2024)</a>; <a href="https://doi.org/10.1029/2024GL110412" target="_blank">Wang and Solomon (2024)</a>
-
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/wildfire_chem_mech.jpg" title="" class="img-fluid rounded z-depth-1" %}
@@ -23,3 +21,10 @@ We combined the past 30 years of satellite data to estimate chlorine activation 
     A mechanism for wildfire-driven ozone depletion (image from <a href="https://www.nature.com/articles/d41586-023-00598-w" target="_blank">McNeill and Thornton, 2023</a>)
 </div>
 
+<h2>Related Work</h2>
+<div class="publications">
+  {% bibliography -f papers -q @*[key=wang_stratospheric_2023]* %}
+  {% bibliography -f papers -q @*[key=wang_contrasting_2024]* %}
+  {% bibliography -f papers -q @*[key=solomon_chlorine_2023]* %} 
+  {% bibliography -f papers -q @*[key=zhang_stratospheric_2024]* %}
+</div>

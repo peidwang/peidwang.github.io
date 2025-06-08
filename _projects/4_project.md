@@ -8,7 +8,7 @@ category:
 related_publications: false
 ---
 
-Layer-Wise Relevance Propagation (LRP) offers a way to interpret the neural networks, which is generally thought as a “black box” process. We applied the LRP technique to understand the physical processes in subgrid convection parameterization (<a href="https://doi.org/10.1029/2022MS002984" target="_blank">Wang et al., 2022</a>) and in Atlantic Multidecadal Variability predictions (<a href="https://doi.org/10.1029/2023GL106278" target="_blank">Liu et al., 2023</a>).
+Layer-Wise Relevance Propagation (LRP) offers a way to interpret the neural networks, which is generally thought as a “black box” process. We applied the LRP technique to gain a deeper understanding of the physical processes represented in subgrid convection parameterization and in predictions of Atlantic Multidecadal Variability.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -19,3 +19,8 @@ Layer-Wise Relevance Propagation (LRP) offers a way to interpret the neural netw
     A demonstration for LRP (image from <a href="https://link.springer.com/chapter/10.1007/978-3-030-28954-6_10" target="_blank">Montavon et al., 2019</a>)
 </div>
 
+<h2>Related Work</h2>
+<div class="publications">
+  {% bibliography -f papers -q @*[key=wang_non-local_2022]* %}
+  {% bibliography -f papers -q @*[key=liu_physical_2023]* %}
+</div>
