@@ -21,6 +21,6 @@ Layer-Wise Relevance Propagation (LRP) offers a way to interpret the neural netw
 
 <h2>Related Work</h2>
 <div class="publications">
-  {% bibliography -f papers -q @*[key=wang_non-local_2022]* %}
   {% bibliography -f papers -q @*[key=liu_physical_2023]* %}
+  {% bibliography -f papers -q @*[key=wang_non-local_2022]* %}
 </div>

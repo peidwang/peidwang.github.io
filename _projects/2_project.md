@@ -23,8 +23,10 @@ We combined the past 30 years of satellite data to estimate chlorine activation 
 
 <h2>Related Work</h2>
 <div class="publications">
-  {% bibliography -f papers -q @*[key=wang_stratospheric_2023]* %}
+  
   {% bibliography -f papers -q @*[key=wang_contrasting_2024]* %}
-  {% bibliography -f papers -q @*[key=solomon_chlorine_2023]* %} 
   {% bibliography -f papers -q @*[key=zhang_stratospheric_2024]* %}
+  {% bibliography -f papers -q @*[key=solomon_chlorine_2023]* %} 
+  {% bibliography -f papers -q @*[key=wang_stratospheric_2023]* %}
+ 
 </div>
