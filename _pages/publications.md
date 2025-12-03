@@ -21,7 +21,9 @@ A full list of publications is also available on my <a href="https://scholar.goo
 {% bibliography -f inprep %}
 
 <h1>Peer-reviewed</h1>
-
  {% bibliography  %}
+
+<h1>Thesis</h1>
+ {% bibliography -f thesis %}
 
 </div>

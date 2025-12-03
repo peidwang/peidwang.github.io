@@ -19,7 +19,7 @@
       maindescription: 
         "<b>Major:</b> Climate Science <br>
          <b>Advisor:</b> Susan Solomon <br>
-         <b>Thesis:</b> Understanding Drivers of Stratospheric Ozone Change and Fingerprinting its Recovery"
+         <b>Thesis:</b> <a href=\"https://dspace.mit.edu/handle/1721.1/164158\">Understanding Drivers of Stratospheric Ozone Change and Fingerprinting its Recovery</a>"
         
     - title: Bachelor of Science (B.S.)
       institution: <a href="https://www.wisc.edu">University of Wisconsin–Madison</a>
@@ -77,10 +77,6 @@
     - title: Jule Charney Fellowship
       year: 2024–2025
       maindescription: Program in Atmospheres, Oceans, and Climates (PAOC), MIT
-
-#    - title: Chinese Government Award for Outstanding Self-Financed Students Abroad
-#      year: 2023
-#      maindescription: Extraordinary Prize for the top 20 awardees
 
     - title: 7<sup>th</sup> SPARC General Assembly Early Career Scientist Best Oral Presentation
       year: 2022
@@ -147,8 +143,8 @@
   contents:
     - <strong>Committee Member:</strong> PAOC Colloquium Committee (2021-2025)
     - <strong>Proposal Reviewer:</strong> NASA ROSES panelist
-    - <strong>Journal Reviewer:</strong> <i>Communications Earth & Environment</i> &bull; <i>Environmental Science & Technology</i> &bull; 
-                          <i>Geophysical Research Letters</i> &bull; <i>Geoscience Letters</i> &bull; <i>Nature Communications</i> &bull; 
+    - <strong>Journal Reviewer:</strong> <i>Advances in Climate Change Research</i> &bull; <i>Communications Earth & Environment</i> &bull; <i>Environmental Science & Technology</i> &bull; 
+                          <i>Geophysical Research Letters</i> &bull; <i>Geoscience Letters</i> &bull; <i>Global and Planetary Change</i> &bull; <i>Nature Communications</i> &bull; 
                           <i>Remote Sensing of Environment</i> &bull; <i>Science Advances</i>
 
 
