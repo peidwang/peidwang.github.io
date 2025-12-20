@@ -23,7 +23,7 @@ The ocean uptake of these molecules was long been thought as a minor loss pathwa
 
 <h2>Related Work</h2>
 <div class="publications">
-  {% bibliography -f inprep -q @*[key=wang_ocean_2025]* %}
+  {% bibliography -f papers -q @*[key=wang_ocean_2025]* %}
   {% bibliography -f papers -q @*[key=wang_influence_2023]* %}
   {% bibliography -f papers -q @*[key=wang_effects_2021]* %}
 </div>
