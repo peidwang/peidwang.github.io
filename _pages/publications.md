@@ -17,7 +17,7 @@ A full list of publications is also available on my <a href="https://scholar.goo
 
 <div class="publications">
 
-<h1>Submitted / Under Review</h1>
+<h1>In Prep / Submitted / Under Review</h1>
 {% bibliography -f inprep %}
 
 <h1>Peer-reviewed</h1>
