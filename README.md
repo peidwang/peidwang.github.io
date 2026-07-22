@@ -21,35 +21,35 @@
 
 ```text
 .
-├── index.html                 # 首页骨架
-├── research.html              # Research 页面骨架
-├── publications.html          # Publications 页面骨架
-├── news.html                  # News 归档页骨架
-├── teaching.html              # Teaching 页面骨架
-├── about.html                 # About 页面骨架
-├── projects/                  # Research 详情页骨架
+├── index.html                 # Home page shell
+├── research.html              # Research page shell
+├── publications.html          # Publications page shell
+├── news.html                  # News archive page shell
+├── teaching.html              # Teaching page shell
+├── about.html                 # About page shell
+├── projects/                  # Research detail page shells
 ├── contents/
-│   ├── site-content.js        # 全站姓名、导航和页脚
-│   ├── home-content.js        # 首页欢迎图、代表论文和新闻数量
-│   ├── news-content.js        # News 完整归档；首页也从这里读取
-│   ├── research-content.js    # Research 总览页标题
-│   ├── publications-content.js # Publications 页面标题和检索文字
-│   ├── teaching-content.js    # Teaching 页面和助教经历
-│   ├── about-content.js       # About 页面和个人介绍
-│   ├── projects/              # 每个研究方向各一个内容文件
-│   ├── inprep.bib             # 准备中或投稿中的论文
-│   ├── papers.bib             # 同行评议论文
-│   └── bibliography-content.js   # 自动生成，不要手动修改
+│   ├── site-content.js        # Shared name, navigation, and footer settings
+│   ├── home-content.js        # Home hero, selected publications, and news count
+│   ├── news-content.js        # Full News archive; also used by the home page
+│   ├── research-content.js    # Research overview page title
+│   ├── publications-content.js # Publications title and search labels
+│   ├── teaching-content.js    # Teaching page and assistantship records
+│   ├── about-content.js       # About page and biography
+│   ├── projects/              # One content file for each research theme
+│   ├── inprep.bib             # In-preparation or submitted papers
+│   ├── papers.bib             # Peer-reviewed publications
+│   └── bibliography-content.js   # Generated automatically; do not edit by hand
 ├── assets/
-│   ├── home/                  # 首页动画和封面图
-│   ├── about/                 # 个人照片和 CV
-│   ├── research/              # Research 卡片图和详情图
-│   └── publications/          # 论文 PDF 和预览图
-├── script.js                  # 页面和中英文切换逻辑
-├── publications.js            # BibTeX 解析和论文交互
-├── styles.css                 # 全站样式
+│   ├── home/                  # Home animation and poster
+│   ├── about/                 # Profile photo and CV
+│   ├── research/              # Research card and detail images
+│   └── publications/          # Publication PDFs and preview images
+├── script.js                  # Page rendering and bilingual switching
+├── publications.js            # BibTeX parsing and publication interactions
+├── styles.css                 # Site-wide styles
 └── scripts/
-    └── sync_bibliography.py   # 生成浏览器可读的论文数据
+    └── sync_bibliography.py   # Generate browser-readable bibliography data
 ```
 
 ## 1. 修改首页欢迎动画和欢迎语
