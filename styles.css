@@ -829,7 +829,7 @@ p {
 .corresponding-note {
   margin: 8px 0 38px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .bib-browser input:focus {
