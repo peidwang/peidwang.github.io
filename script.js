@@ -17,6 +17,20 @@
   const currentNavigationID = page === "project" ? "research" : page;
   let updateMobileMenuLabel = () => {};
 
+  function initializeAnalytics() {
+    const measurementID = "G-6XJH0VLRQS";
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+    const tag = document.createElement("script");
+    tag.async = true;
+    tag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementID}`;
+    document.head.append(tag);
+
+    window.gtag("js", new Date());
+    window.gtag("config", measurementID);
+  }
+
   function escapeHTML(value) {
     return String(value || "").replace(/[&<>"']/g, (character) => ({
       "&": "&amp;",
@@ -167,7 +181,7 @@
     }, {});
 
     document.querySelector("#page-content").innerHTML = `
-      <section class="hero welcome-hero">
+      <section class="hero">
         <div class="hero-banner">
           <img
             class="hero-animation"
@@ -208,7 +222,6 @@
       </section>
     `;
 
-    renderFooter();
   }
 
   function renderResearch() {
@@ -238,7 +251,6 @@
       <section class="research-card-list">${cards}</section>
     `;
 
-    renderFooter();
   }
 
   function renderPublications() {
@@ -266,7 +278,6 @@
       root,
     );
 
-    renderFooter();
   }
 
   function renderAbout() {
@@ -301,7 +312,6 @@
       </section>
     `;
 
-    renderFooter();
   }
 
   function renderNews() {
@@ -312,7 +322,6 @@
       </section>
     `;
 
-    renderFooter();
   }
 
   function renderTeaching() {
@@ -338,7 +347,6 @@
       </section>
     `;
 
-    renderFooter();
   }
 
   function renderProject() {
@@ -367,7 +375,7 @@
         ? `<a href="${escapeHTML(project.figureSource.url)}" target="_blank" rel="noreferrer">${escapeHTML(project.figureSource.citation)}</a>`
         : `<span class="figure-credit">${escapeHTML(project.figureSource.citation)}</span>`;
 
-      figureSource = `<span class="figure-source">${localized(sourcePrefix)}${sourceCredit}${localized(sourceSuffix)}</span>`;
+      figureSource = `<span>${localized(sourcePrefix)}${sourceCredit}${localized(sourceSuffix)}</span>`;
     }
 
     document.querySelector("#page-content").innerHTML = `
@@ -404,7 +412,6 @@
       root,
     );
 
-    renderFooter();
   }
 
   function getSavedLanguage() {
@@ -521,6 +528,7 @@
     });
   }
 
+  initializeAnalytics();
   renderHeader();
 
   const pageRenderers = {
@@ -534,6 +542,7 @@
   };
 
   pageRenderers[page]?.();
+  renderFooter();
   initializeMobileNavigation();
   initializeLanguage();
   initializePageTransitions();

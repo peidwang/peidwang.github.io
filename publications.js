@@ -57,7 +57,6 @@
     let cursor = 0;
 
     while ((cursor = text.indexOf("@", cursor)) !== -1) {
-      const entryStart = cursor;
       const openingBrace = text.indexOf("{", cursor);
       if (openingBrace < 0) break;
 
@@ -111,7 +110,6 @@
       while (cursor < text.length && text[cursor] !== "}") cursor += 1;
       if (text[cursor] === "}") cursor += 1;
 
-      entry.raw = text.slice(entryStart, cursor);
       entries.push(entry);
     }
 
@@ -196,7 +194,7 @@
     const badge = cleanBibTeX(entry.abbr || entry.type || "Paper");
 
     if (!entry.preview) {
-      return `<div class="pub-media no-preview"><span>${escapeHTML(badge)}</span></div>`;
+      return `<div class="pub-media"><span>${escapeHTML(badge)}</span></div>`;
     }
 
     const image = `${root}/assets/publications/previews/${cleanBibTeX(entry.preview)}`;
@@ -229,7 +227,7 @@
   }
 
   function formatBibTeX(entry) {
-    const hiddenFields = new Set(["type", "key", "raw", "abstract", "abbr", "corresponding", "news", "pdf", "preview", "selected"]);
+    const hiddenFields = new Set(["type", "key", "abstract", "abbr", "corresponding", "news", "pdf", "preview", "selected"]);
     const fields = Object.entries(entry)
       .filter(([field]) => !hiddenFields.has(field))
       .map(([field, value]) => `  ${field === "html" ? "url" : field} = {${value}},`)
@@ -243,7 +241,7 @@
     const venue = entry.journal || entry.booktitle || entry.school || "";
 
     return `
-      <article class="bib-entry" data-key="${escapeHTML(entry.key)}">
+      <article class="bib-entry">
         ${publicationMedia(entry, root)}
         <div class="bib-main">
           <h3>${escapeHTML(cleanBibTeX(entry.title))}</h3>
