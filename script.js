@@ -15,6 +15,7 @@
   const page = document.body.dataset.page;
   const root = document.body.dataset.root || ".";
   const currentNavigationID = page === "project" ? "research" : page;
+  let updateMobileMenuLabel = () => {};
 
   function escapeHTML(value) {
     return String(value || "").replace(/[&<>"']/g, (character) => ({
@@ -53,7 +54,19 @@
 
     document.querySelector("#site-header").innerHTML = `
       <header class="site-header">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="site-navigation"
+          aria-expanded="false"
+          aria-label="打开菜单"
+          data-aria-label-zh="打开菜单"
+          data-aria-label-en="Open menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
         <nav
+          id="site-navigation"
           aria-label="主导航"
           data-aria-label-zh="主导航"
           data-aria-label-en="Primary navigation"
@@ -63,6 +76,51 @@
         </button>
       </header>
     `;
+  }
+
+  function initializeMobileNavigation() {
+    const header = document.querySelector(".site-header");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#site-navigation");
+    if (!header || !menuToggle || !navigation) return;
+
+    const setMenuOpen = (isOpen) => {
+      const language = document.documentElement.lang === "zh-CN" ? "zh" : "en";
+      header.classList.toggle("menu-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        language === "zh"
+          ? (isOpen ? "关闭菜单" : "打开菜单")
+          : (isOpen ? "Close menu" : "Open menu"),
+      );
+    };
+
+    menuToggle.addEventListener("click", () => {
+      setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a")) setMenuOpen(false);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) setMenuOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || menuToggle.getAttribute("aria-expanded") !== "true") return;
+      setMenuOpen(false);
+      menuToggle.focus();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 800) setMenuOpen(false);
+    });
+
+    updateMobileMenuLabel = () => {
+      setMenuOpen(menuToggle.getAttribute("aria-expanded") === "true");
+    };
   }
 
   function renderFooter() {
@@ -410,6 +468,7 @@
     toggle.setAttribute("aria-label", language === "zh" ? "Switch to English" : "切换为中文");
     toggle.dataset.language = language;
     saveLanguage(language);
+    updateMobileMenuLabel();
   }
 
   function initializeLanguage() {
@@ -475,6 +534,7 @@
   };
 
   pageRenderers[page]?.();
+  initializeMobileNavigation();
   initializeLanguage();
   initializePageTransitions();
 })();
