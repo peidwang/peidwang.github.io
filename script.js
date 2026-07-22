@@ -286,11 +286,11 @@
     const biography = profile.biography
       .map((paragraph) => localizedHTML(paragraph, "p"))
       .join("");
-    const links = profile.links.map((link) => `
-      <a href="${escapeHTML(link.url)}" ${link.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>
-        ${localized(link.label)} ↗
-      </a>
-    `).join("");
+    const contact = profile.links.filter((link) => !link.url)
+      .map((link) => localized(link.label)).join("");
+    const links = profile.links.filter((link) => link.url)
+      .map((link) => `<a href="${escapeHTML(link.url)}" ${link.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${localized(link.label)} ↗</a>`)
+      .join("");
 
     document.querySelector("#page-content").innerHTML = `
       ${pageHero(about.title)}
@@ -304,10 +304,12 @@
         >
         <div>
           <p class="tag">${localized(profile.category)}</p>
-          ${localized(profile.name, "h2")}
-          ${localized(profile.role, "h3")}
+          <div class="about-name-row">
+            ${localized(profile.name, "h2")}
+            <div class="profile-links">${links}</div>
+          </div>
+          <div class="profile-contact">${contact}</div>
           <div class="about-biography">${biography}</div>
-          <div class="profile-links">${links}</div>
         </div>
       </section>
     `;

@@ -195,17 +195,13 @@ Change `data-project="ocean"` in `<body>` to the new project `id`, and replace t
 
 ## 7. Update the About Page
 
-The profile photo, position, biography, and links are stored in the `profile` object in `contents/about-content.js`:
+The profile photo, category, biography, and links are stored in the `profile` object in `contents/about-content.js`:
 
 ```js
 {
   name: { zh: "Chinese name", en: "Peidong Wang" },
   category: { zh: "Chinese role", en: "Postdoctoral Researcher" },
   image: "assets/about/profile.jpg",
-  role: {
-    zh: "Chinese position",
-    en: "English position",
-  },
   biography: [
     {
       zh: "First Chinese biography paragraph",
@@ -218,14 +214,15 @@ The profile photo, position, biography, and links are stored in the `profile` ob
   ],
   links: [
     {
-      label: { zh: "Email in Chinese", en: "Email" },
-      url: "mailto:pdwang@stanford.edu",
+      label: { zh: "pdwang@stanford.edu", en: "pdwang@stanford.edu" },
     },
   ],
 },
 ```
 
 Store the profile photo and CV in `assets/about/`.
+
+Omit `url` when a profile item should appear as selectable plain text rather than a link.
 
 The `biography` array supports multiple paragraphs. To add a link within the text, use:
 

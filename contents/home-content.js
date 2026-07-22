@@ -19,6 +19,7 @@ window.PAGE_CONTENT = {
     zh: ["大气", "海洋", "气候"],
     en: ["Atmosphere", "Ocean", "Climate"],
   },
+
   heroTitle: {
     zh: "欢迎来到王沛东的个人网站",
     en: "Welcome to Peidong’s website",

@@ -10,10 +10,6 @@ window.PAGE_CONTENT = {
     name: { zh: "王沛东", en: "Peidong Wang" },
     category: { zh: "博士后研究员", en: "Postdoctoral Researcher" },
     image: "assets/about/profile.jpg",
-    role: {
-      zh: "Stanford Science Fellow",
-      en: "Stanford Science Fellow",
-    },
     // The biography can contain multiple paragraphs and inline links using <a href="...">link text</a>.
     biography: [
       {
@@ -30,8 +26,8 @@ window.PAGE_CONTENT = {
       },
     ],
     links: [
-      { label: { zh: "邮箱", en: "Email" }, url: "mailto:pdwang@stanford.edu" },
-      { label: { zh: "简历", en: "CV" }, url: "assets/about/CV_PeidongWang.pdf" },
+      { label: { zh: "pdwang@stanford.edu", en: "pdwang@stanford.edu" } },
+      { label: { zh: "CV", en: "CV" }, url: "assets/about/CV_PeidongWang.pdf" },
       { label: { zh: "Google Scholar", en: "Google Scholar" }, url: "https://scholar.google.com/citations?user=6-8u9dYAAAAJ&hl=en" },
     ],
   },

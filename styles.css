@@ -667,18 +667,18 @@ p {
 }
 
 .about-profile h2 {
-  margin: 4px 0 6px;
+  margin: 4px 0 0;
   color: var(--navy);
   font-family: var(--serif);
   font-size: 45px;
   font-weight: 500;
 }
 
-.about-profile h3 {
-  margin: 0 0 20px;
-  color: var(--accent);
-  font-size: 17px;
-  font-weight: 500;
+.about-name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 36px;
 }
 
 .about-profile p {
@@ -704,10 +704,10 @@ p {
 }
 
 .profile-links {
-  margin-top: 22px;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 18px;
 }
 
 .profile-links a {
@@ -715,6 +715,13 @@ p {
   font-size: 14px;
   font-weight: 600;
   text-underline-offset: 4px;
+}
+
+.profile-contact {
+  margin: 5px 0 24px;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .profile-links a:hover,
@@ -771,6 +778,7 @@ p {
   font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
+  text-wrap: wrap;
 }
 
 .teaching-entry h3 {
