@@ -195,7 +195,6 @@
             ${localized(heroEyebrow, "p", "hero-eyebrow")}
             ${localized(home.heroTitle, "h2")}
           </div>
-          <span class="hero-media-credit">${escapeHTML(home.heroMediaCredit)}</span>
         </div>
       </section>
 

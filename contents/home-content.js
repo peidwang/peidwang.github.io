@@ -14,7 +14,6 @@ window.PAGE_CONTENT = {
     zh: "Sentinel-5P TROPOMI 观测的 2020 年南极臭氧空洞演变",
     en: "Evolution of the 2020 Antarctic ozone hole observed by Sentinel-5P TROPOMI",
   },
-  heroMediaCredit: "ESA · DLR / Sentinel-5P TROPOMI",
   heroEyebrow: {
     zh: ["大气", "海洋", "气候"],
     en: ["Atmosphere", "Ocean", "Climate"],
@@ -22,7 +21,7 @@ window.PAGE_CONTENT = {
 
   heroTitle: {
     zh: "欢迎来到王沛东的个人网站",
-    en: "Welcome to Peidong’s website",
+    en: "Welcome to Peidong's website",
   },
 
   newsSectionTitle: { zh: "新闻报道", en: "News" },

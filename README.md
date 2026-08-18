@@ -63,14 +63,13 @@ heroAnimationLabel: {
   zh: "Chinese animation description",
   en: "English animation description",
 },
-heroMediaCredit: "Animation source credit",
 heroEyebrow: {
   zh: ["Atmosphere in Chinese", "Ocean in Chinese", "Climate in Chinese"],
   en: ["Atmosphere", "Ocean", "Climate"],
 },
 heroTitle: {
   zh: "Chinese welcome message",
-  en: "Welcome to Peidong’s website",
+  en: "Welcome to Peidong's website",
 },
 ```
 
