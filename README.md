@@ -159,7 +159,7 @@ After editing a `.bib` file, run this command from the site directory:
 python3 scripts/sync_bibliography.py
 ```
 
-GitHub Actions also runs this script during deployment, so `.bib` edits made through the GitHub web interface can be committed directly.
+Commit the updated `contents/bibliography-content.js` together with the `.bib` file. This ensures that both branch-based and GitHub Actions deployments use the same bibliography data. The custom GitHub Actions workflow also regenerates the file in its deployment artifact.
 
 ## 6. Add a Research Theme
 
