@@ -298,17 +298,43 @@
 
   }
 
+  /** Small line icons for the About page links (24 × 24 grid, drawn with the text color). */
+  const profileLinkIcons = {
+    email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+    cv: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/>',
+    scholar: '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5"/><path d="M22 9v6"/>',
+    orcid: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6.2 16.2c.6-1.3 1.6-2 2.8-2s2.2.7 2.8 2"/><path d="M14.5 10h4M14.5 14h3"/>',
+    link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+  };
+
+  /** Use link.icon if set; otherwise guess from the link itself. */
+  function profileLinkIcon(link) {
+    const url = link.url || "";
+    const name = link.icon
+      || (!url ? "email"
+        : /\.pdf($|[?#])/i.test(url) ? "cv"
+          : /scholar\.google\./i.test(url) ? "scholar"
+            : /orcid\.org/i.test(url) ? "orcid"
+              : "link");
+    if (name === "orcid") {
+      // The official ORCID iD (one-color copy) is used as a mask, so it takes the link color like the other icons.
+      return `<span class="profile-icon profile-icon-mask" style="--icon: url('${pathFromRoot("assets/site/orcid-id-mono.svg")}')" aria-hidden="true"></span>`;
+    }
+    return `<svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${profileLinkIcons[name] || profileLinkIcons.link}</svg>`;
+  }
+
   function renderAbout() {
     const about = pageContent;
     const profile = about.profile;
     const biography = profile.biography
       .map((paragraph) => localizedHTML(paragraph, "p"))
       .join("");
-    const contact = profile.links.filter((link) => !link.url)
-      .map((link) => localized(link.label)).join("");
-    const links = profile.links.filter((link) => link.url)
-      .map((link) => `<a href="${escapeHTML(link.url)}" ${link.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${localized(link.label)} ↗</a>`)
-      .join("");
+    const profileLinks = profile.links.map((link) => {
+      const content = `${profileLinkIcon(link)}${localized(link.label)}`;
+      if (!link.url) return `<li><span class="profile-email">${content}</span></li>`;
+      const external = link.url.startsWith("http") ? ' target="_blank" rel="noreferrer"' : "";
+      return `<li><a href="${escapeHTML(link.url)}"${external}>${content}</a></li>`;
+    }).join("");
 
     document.querySelector("#page-content").innerHTML = `
       ${pageHero(about.title)}
@@ -321,12 +347,10 @@
           data-alt-en="${escapeHTML(profile.name.en)}"
         >
         <div>
-          <p class="tag">${localized(profile.category)}</p>
           <div class="about-name-row">
             ${localized(profile.name, "h2")}
-            <div class="profile-links">${links}</div>
           </div>
-          <div class="profile-contact">${contact}</div>
+          <ul class="profile-links">${profileLinks}</ul>
           <div class="about-biography">${biography}</div>
         </div>
       </section>
