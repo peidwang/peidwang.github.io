@@ -33,6 +33,38 @@
     readPaper: { zh: "阅读论文 ↗", en: "Read paper ↗" },
   };
 
+  /** Translations for the optional `status` field used in contents/inprep.bib. */
+  const statusLabels = {
+    "in preparation": { zh: "准备中", en: "In preparation" },
+    submitted: { zh: "已投稿", en: "Submitted" },
+    "under review": { zh: "审稿中", en: "Under review" },
+    "in revision": { zh: "修改中", en: "In revision" },
+    accepted: { zh: "已接收", en: "Accepted" },
+  };
+
+  function statusLabel(entry) {
+    const status = cleanBibTeX(entry.status);
+    if (!status) return "";
+    const label = statusLabels[status.toLowerCase()] || { zh: status, en: status };
+    return ` <span class="pub-status">(${localized(label)})</span>`;
+  }
+
+  /** Extract a DOI from the `doi` field or from a doi.org / publisher URL. */
+  function doiFor(entry) {
+    if (entry.doi) return cleanBibTeX(entry.doi);
+    const match = cleanBibTeX(entry.html).match(/\b(10\.\d{4,9}\/[^\s?#]+)/);
+    return match ? match[1] : "";
+  }
+
+  /** Only visible bibliographic fields are searched, so a query such as "2024" matches publication years, not download dates or file names. */
+  function searchableText(entry) {
+    return [entry.title, entry.author, entry.journal, entry.booktitle, entry.school, entry.abbr, entry.year, entry.keywords, entry.status]
+      .map(cleanBibTeX)
+      .join(" ")
+      .normalize("NFKC")
+      .toLowerCase();
+  }
+
   function localized(value, element = "span") {
     return `<${element} data-zh="${escapeHTML(value.zh)}" data-en="${escapeHTML(value.en)}">${escapeHTML(value.zh)}</${element}>`;
   }
@@ -41,8 +73,11 @@
     return document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
   }
 
+  const subscriptDigits = { 0: "₀", 1: "₁", 2: "₂", 3: "₃", 4: "₄", 5: "₅", 6: "₆", 7: "₇", 8: "₈", 9: "₉" };
+
   function cleanBibTeX(value) {
     return String(value || "")
+      .replace(/\$_\{?(\d+)\}?\$/g, (_, digits) => digits.replace(/\d/g, (digit) => subscriptDigits[digit]))
       .replace(/[{}]/g, "")
       .replace(/\\%/g, "%")
       .replace(/\\&/g, "&")
@@ -227,9 +262,17 @@
   }
 
   function formatBibTeX(entry) {
-    const hiddenFields = new Set(["type", "key", "abstract", "abbr", "corresponding", "news", "pdf", "preview", "selected"]);
-    const fields = Object.entries(entry)
-      .filter(([field]) => !hiddenFields.has(field))
+    const hiddenFields = new Set([
+      "type", "key", "abstract", "abbr", "corresponding", "news", "pdf", "preview", "selected", "status",
+      "urldate", "copyright", "language", "keywords", "issn",
+    ]);
+    const exported = Object.entries(entry).filter(([field]) => !hiddenFields.has(field));
+    const doi = doiFor(entry);
+    if (doi && !entry.doi) {
+      const urlIndex = exported.findIndex(([field]) => field === "html");
+      exported.splice(urlIndex < 0 ? exported.length : urlIndex, 0, ["doi", doi]);
+    }
+    const fields = exported
       .map(([field, value]) => `  ${field === "html" ? "url" : field} = {${value}},`)
       .join("\n");
 
@@ -247,7 +290,7 @@
           <h3>${escapeHTML(cleanBibTeX(entry.title))}</h3>
           <p class="authors">${formatAuthors(entry.author, entry.corresponding)}</p>
           <p class="venue">
-            <em>${escapeHTML(cleanBibTeX(venue))}</em>${entry.year ? `, ${escapeHTML(cleanBibTeX(entry.year))}` : ""}
+            <em>${escapeHTML(cleanBibTeX(venue))}</em>${entry.year ? `, ${escapeHTML(cleanBibTeX(entry.year))}` : ""}${statusLabel(entry)}
           </p>
           <div class="pub-actions">
             ${publicationActions(entry, panelID, root)}
@@ -358,17 +401,13 @@
   }
 
   function renderGrouped(container, query, root) {
-    const normalizedQuery = cleanBibTeX(query).toLowerCase();
+    const normalizedQuery = cleanBibTeX(query).normalize("NFKC").toLowerCase();
     let index = 0;
     let html = "";
 
     sections.forEach((section) => {
       const matchingEntries = section.entries
-        .filter((entry) => Object.values(entry)
-          .map(cleanBibTeX)
-          .join(" ")
-          .toLowerCase()
-          .includes(normalizedQuery))
+        .filter((entry) => searchableText(entry).includes(normalizedQuery))
         .sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
 
       if (matchingEntries.length === 0) return;
@@ -413,15 +452,17 @@
 
     return selectedEntries
       .map((entry) => {
-        const link = cleanBibTeX(entry.html || "#");
-        const preview = `${root}/assets/publications/previews/${cleanBibTeX(entry.preview)}`;
+        const link = cleanBibTeX(entry.html);
+        const preview = entry.preview
+          ? `<img src="${escapeHTML(`${root}/assets/publications/previews/${cleanBibTeX(entry.preview)}`)}" loading="lazy" decoding="async" alt="${escapeHTML(cleanBibTeX(entry.title))}">`
+          : "";
 
         return `
           <article>
-            <img src="${escapeHTML(preview)}" loading="lazy" decoding="async" alt="${escapeHTML(cleanBibTeX(entry.title))}">
+            ${preview}
             <p><em>${escapeHTML(cleanBibTeX(entry.abbr || entry.journal))}</em> · ${escapeHTML(cleanBibTeX(entry.year))}</p>
             <h3>${escapeHTML(cleanBibTeX(entry.title))}</h3>
-            <a href="${escapeHTML(link)}" target="_blank" rel="noreferrer">${localized(interfaceText.readPaper)}</a>
+            ${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noreferrer">${localized(interfaceText.readPaper)}</a>` : ""}
           </article>
         `;
       }).join("");

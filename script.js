@@ -142,7 +142,7 @@
 
     footer.innerHTML = `
       <footer class="compact-footer">
-        <span>© ${escapeHTML(site.copyrightYear)} ${escapeHTML(site.name)}. All rights reserved.</span>
+        <span>© ${escapeHTML(site.copyrightYear)} ${escapeHTML(site.name)}. ${localized({ zh: "版权所有。", en: "All rights reserved." })}</span>
       </footer>
     `;
   }
@@ -183,14 +183,33 @@
     document.querySelector("#page-content").innerHTML = `
       <section class="hero">
         <div class="hero-banner">
-          <img
-            class="hero-animation"
-            src="${pathFromRoot(reduceMotion ? home.heroPoster : home.heroAnimation)}"
-            fetchpriority="high"
-            alt="${escapeHTML(home.heroAnimationLabel.zh)}"
-            data-alt-zh="${escapeHTML(home.heroAnimationLabel.zh)}"
-            data-alt-en="${escapeHTML(home.heroAnimationLabel.en)}"
-          >
+          ${reduceMotion ? `
+            <img
+              class="hero-animation"
+              src="${pathFromRoot(home.heroPoster)}"
+              fetchpriority="high"
+              alt="${escapeHTML(home.heroAnimationLabel.zh)}"
+              data-alt-zh="${escapeHTML(home.heroAnimationLabel.zh)}"
+              data-alt-en="${escapeHTML(home.heroAnimationLabel.en)}"
+            >
+          ` : `
+            <video
+              class="hero-animation"
+              poster="${pathFromRoot(home.heroPoster)}"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              disablepictureinpicture
+              aria-label="${escapeHTML(home.heroAnimationLabel.zh)}"
+              data-aria-label-zh="${escapeHTML(home.heroAnimationLabel.zh)}"
+              data-aria-label-en="${escapeHTML(home.heroAnimationLabel.en)}"
+            >
+              ${home.heroAnimationWebM ? `<source src="${pathFromRoot(home.heroAnimationWebM)}" type="video/webm">` : ""}
+              <source src="${pathFromRoot(home.heroAnimation)}" type="video/mp4">
+            </video>
+          `}
           <div class="hero-banner-mask">
             ${localized(heroEyebrow, "p", "hero-eyebrow")}
             ${localized(home.heroTitle, "h2")}

@@ -6,13 +6,13 @@
  */
 
 window.NEWS_CONTENT = {
-  title: { zh: "新闻与动态", en: "News & Updates" },
+  title: { zh: "新闻与媒体报道", en: "News & Media" },
   items: [
     {
       date: { zh: "2026 年 6 月 29 日", en: "29 Jun 2026" },
       title: {
         zh: "科学家发现：臭氧层损耗在臭氧空洞被发现前数十年就已开始",
-        en: "Scientists find that ozone depletion began decades before the ozone hole was discovered",
+        en: "Scientists find ozone depletion began decades before discovery of ozone hole",
       },
       source: "MIT News",
       url: "https://news.mit.edu/2026/scientists-find-ozone-depletion-began-decades-before-ozone-hole-discovery-0629",
@@ -20,29 +20,29 @@ window.NEWS_CONTENT = {
     {
       date: { zh: "2026 年 6 月 29 日", en: "29 Jun 2026" },
       title: {
-        zh: "臭氧层损耗早在臭氧空洞发现前数十年便已开始",
+        zh: "臭氧层侵蚀早在臭氧空洞被发现前数十年就已开始",
         en: "Ozone erosion started decades before the ozone hole’s discovery",
       },
-      source: "Nature",
+      source: { zh: "《自然》", en: "Nature" },
       url: "https://www.nature.com/articles/d41586-026-02033-2",
     },
     {
       date: { zh: "2025 年 10 月 15 日", en: "15 Oct 2025" },
       title: {
         zh: "臭氧层的恢复是得益于人类的减排活动吗？",
-        en: "Is the recovery of the ozone layer attributable to human-driven emissions reductions?",
+        en: "Is the ozone layer recovering thanks to human emission reductions? (in Chinese)",
       },
       source: {
         zh: "湖南卫视《新闻大求真》",
-        en: "MangoTV · Seeking Truth in News",
+        en: "Hunan TV (via MangoTV)",
       },
       url: "https://w.mgtv.com/b/715003/23630281.html",
     },
     {
       date: { zh: "2025 年 4 月 2 日", en: "2 Apr 2025" },
       title: {
-        zh: "王沛东加入 Stanford Science Fellows 项目",
-        en: "Peidong Wang joins Stanford Science Fellows’ Program",
+        zh: "王沛东入选斯坦福科学学者（Stanford Science Fellows）项目",
+        en: "Peidong Wang named a Stanford Science Fellow",
       },
       source: "Stanford Report",
       url: "https://news.stanford.edu/stories/2025/04/stanford-science-fellows-cohort-largest-ever",
@@ -51,11 +51,11 @@ window.NEWS_CONTENT = {
       date: { zh: "2025 年 3 月 11 日", en: "11 Mar 2025" },
       title: {
         zh: "《蒙特利尔议定书》减排措施推动南极臭氧层恢复",
-        en: "Emission reductions under the Montreal Protocol are driving Antarctic ozone recovery",
+        en: "Emission reductions under the Montreal Protocol are driving Antarctic ozone recovery (in Chinese)",
       },
       source: {
         zh: "科学网",
-        en: "ScienceNet",
+        en: "ScienceNet.cn",
       },
       url: "https://news.sciencenet.cn/htmlnews/2025/3/540251.shtm",
     },
@@ -63,7 +63,7 @@ window.NEWS_CONTENT = {
       date: { zh: "2025 年 3 月 5 日", en: "5 Mar 2025" },
       title: {
         zh: "研究证实：全球削减 CFC 排放正在推动臭氧空洞恢复",
-        en: "Study confirms that global CFC reductions are helping the ozone hole heal",
+        en: "Study: The ozone hole is healing, thanks to global reduction of CFCs",
       },
       source: "MIT News",
       url: "https://news.mit.edu/2025/study-healing-ozone-hole-global-reduction-cfcs-0305",
@@ -72,11 +72,11 @@ window.NEWS_CONTENT = {
       date: { zh: "2023 年 4 月 11 日", en: "11 Apr 2023" },
       title: {
         zh: "“实验室氛围真的很重要”！90 后中国博士生再获重要突破",
-        en: "“The lab atmosphere really matters”: A Chinese PhD student makes another major breakthrough",
+        en: "“The lab atmosphere really matters”: A Chinese PhD student makes another major breakthrough (in Chinese)",
       },
       source: {
         zh: "科学网",
-        en: "ScienceNet",
+        en: "ScienceNet.cn",
       },
       url: "https://news.sciencenet.cn/htmlnews/2023/4/498294.shtm",
     },

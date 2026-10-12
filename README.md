@@ -43,6 +43,7 @@ The HTML, CSS, and page-rendering code should not require frequent edits.
 ├── assets/
 │   ├── home/                  # Home animation and poster
 │   ├── about/                 # Profile photo and CV
+│   ├── fonts/                 # Self-hosted Source Sans 3 and Source Serif 4
 │   ├── research/              # Research card and detail images
 │   └── publications/          # Publication PDFs and preview images
 ├── script.js                  # Page rendering and bilingual switching
@@ -57,7 +58,8 @@ The HTML, CSS, and page-rendering code should not require frequent edits.
 Open `contents/home-content.js` and locate:
 
 ```js
-heroAnimation: "assets/home/ozone-hole-2020-cropped.gif",
+heroAnimation: "assets/home/ozone-hole-2020.mp4",
+heroAnimationWebM: "assets/home/ozone-hole-2020.webm", // optional
 heroPoster: "assets/home/ozone-hole-2020-poster.png",
 heroAnimationLabel: {
   zh: "Chinese animation description",
@@ -73,7 +75,14 @@ heroTitle: {
 },
 ```
 
-Edit the text inside the quotation marks. To replace the animation, place the GIF and poster image in `assets/home/`, then update the `heroAnimation` and `heroPoster` filenames.
+Edit the text inside the quotation marks. The animation is a short muted MP4 loop, which is about one tenth the size of an equivalent GIF. To replace it, convert your GIF and place the video and a still poster image in `assets/home/`, then update the `heroAnimation` and `heroPoster` filenames:
+
+```bash
+ffmpeg -i input.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 20 -an assets/home/new-animation.mp4
+ffmpeg -i assets/home/new-animation.mp4 -c:v libvpx-vp9 -b:v 0 -crf 34 -an assets/home/new-animation.webm   # optional
+```
+
+Visitors who prefer reduced motion see the poster image instead.
 
 ## 2. Add a News Item
 
@@ -146,11 +155,15 @@ Copying an existing entry is the easiest way to create a new one:
 }
 ```
 
-The `corresponding` field identifies corresponding authors. Separate co-corresponding authors with `and`, for example `{Wang, Peidong and Solomon, Susan}`. Entries containing an `abstract` field automatically display an ABS button. Every publication displays a BIB button by default, so `bibtex_show` is unnecessary. Expanded BIB citations automatically omit `abstract`, `corresponding`, and site-only fields for preview images, PDFs, news, and home-page selection. The `html` link is exported as a standard `url` field. Add `selected` only when a paper should appear on the home page.
+For entries in `contents/inprep.bib`, keep `journal` as the plain journal name and record the manuscript stage in a separate `status` field, for example `status = {Under review}`. Recognized values (`In preparation`, `Submitted`, `Under review`, `In revision`, `Accepted`) are translated automatically on the Chinese site; other values are shown as written.
+
+The `corresponding` field identifies corresponding authors. Separate co-corresponding authors with `and`, for example `{Wang, Peidong and Solomon, Susan}`. Entries containing an `abstract` field automatically display an ABS button. Every publication displays a BIB button by default, so `bibtex_show` is unnecessary. Expanded BIB citations automatically omit `abstract`, `corresponding`, `status`, reference-manager fields (`urldate`, `copyright`, `language`, `keywords`, `issn`), and site-only fields for preview images, PDFs, news, and home-page selection. The `html` link is exported as a standard `url` field, and a `doi` field is added automatically when the link contains a DOI. Prefer `https://doi.org/...` links for `html`.
+
+Preview images are shown as small thumbnails, so about 1000 px wide is enough. Use JPG for still images and animated WebP rather than GIF for animations. To write a subscript in a title, use `{N$_2$O}`; the website displays it as N₂O. Add `selected` only when a paper should appear on the home page.
 
 Store related files in these locations:
 
-- `pdf` files: `assets/publications/papers/`
+- `pdf` files: `assets/publications/papers/` (check each publisher's self-archiving policy before posting a published PDF; everything in this repository is publicly downloadable, even if no page links to it)
 - `preview` images: `assets/publications/previews/`
 
 After editing a `.bib` file, run this command from the site directory:
@@ -242,6 +255,8 @@ Then open:
 ```text
 http://localhost:8000
 ```
+
+Pages do not use `?v=` version strings. GitHub Pages caches files for about 10 minutes, so after deployment a hard refresh (Cmd + Shift + R) shows the newest version immediately.
 
 ## 9. Deploy to GitHub Pages
 
