@@ -1,8 +1,7 @@
 /**
  * Teaching page content
  * ---------------------
- * Course names, institutions, departments, terms, and roles are based on assets/about/CV_PeidongWang.pdf.
- * To add a course, copy a complete entry to the top of the experiences array and update its fields.
+ * Add a course by copying a complete entry to the top of the experiences array.
  */
 
 window.PAGE_CONTENT = {

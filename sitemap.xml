@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pages for search engines. Add a line here when you add a new page. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://peidwang.com/</loc></url>
+  <url><loc>https://peidwang.com/research.html</loc></url>
+  <url><loc>https://peidwang.com/publications.html</loc></url>
+  <url><loc>https://peidwang.com/news.html</loc></url>
+  <url><loc>https://peidwang.com/teaching.html</loc></url>
+  <url><loc>https://peidwang.com/about.html</loc></url>
+  <url><loc>https://peidwang.com/projects/ocean.html</loc></url>
+  <url><loc>https://peidwang.com/projects/wildfire.html</loc></url>
+  <url><loc>https://peidwang.com/projects/ozone.html</loc></url>
+  <url><loc>https://peidwang.com/projects/ml.html</loc></url>
+</urlset>

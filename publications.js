@@ -1,14 +1,18 @@
 /**
  * Publication renderer
  * --------------------
- * This file reads the generated contents/bibliography-content.js file.
- * Daily publication edits belong in contents/*.bib, not here.
+ * Reads the generated contents/bibliography-content.js (built from contents/*.bib
+ * by scripts/sync_bibliography.py) and renders the Publications page, the
+ * "Related Publications" lists and the home-page selection.
+ * Routine publication edits belong in contents/*.bib, not here.
  */
 
 (function () {
   "use strict";
 
-  const source = window.BIB_DATA || { inprep: "", papers: "" };
+  /* ================================================================
+     1. Helpers and interface text
+     ================================================================ */
 
   function escapeHTML(value) {
     return String(value || "").replace(/[&<>"']/g, (character) => ({
@@ -18,6 +22,14 @@
       "\"": "&quot;",
       "'": "&#39;",
     })[character]);
+  }
+
+  function localized(value, element = "span") {
+    return `<${element} data-zh="${escapeHTML(value.zh)}" data-en="${escapeHTML(value.en)}">${escapeHTML(value.zh)}</${element}>`;
+  }
+
+  function currentLanguage() {
+    return document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
   }
 
   const interfaceText = {
@@ -42,36 +54,11 @@
     accepted: { zh: "已接收", en: "Accepted" },
   };
 
-  function statusLabel(entry) {
-    const status = cleanBibTeX(entry.status);
-    if (!status) return "";
-    const label = statusLabels[status.toLowerCase()] || { zh: status, en: status };
-    return ` <span class="pub-status">(${localized(label)})</span>`;
-  }
+  /* ================================================================
+     2. Reading BibTeX
+     ================================================================ */
 
-  /** Extract a DOI from the `doi` field or from a doi.org / publisher URL. */
-  function doiFor(entry) {
-    if (entry.doi) return cleanBibTeX(entry.doi);
-    const match = cleanBibTeX(entry.html).match(/\b(10\.\d{4,9}\/[^\s?#]+)/);
-    return match ? match[1] : "";
-  }
-
-  /** Only visible bibliographic fields are searched, so a query such as "2024" matches publication years, not download dates or file names. */
-  function searchableText(entry) {
-    return [entry.title, entry.author, entry.journal, entry.booktitle, entry.school, entry.abbr, entry.year, entry.keywords, entry.status]
-      .map(cleanBibTeX)
-      .join(" ")
-      .normalize("NFKC")
-      .toLowerCase();
-  }
-
-  function localized(value, element = "span") {
-    return `<${element} data-zh="${escapeHTML(value.zh)}" data-en="${escapeHTML(value.en)}">${escapeHTML(value.zh)}</${element}>`;
-  }
-
-  function currentLanguage() {
-    return document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
-  }
+  const source = window.BIB_DATA || { inprep: "", papers: "" };
 
   const subscriptDigits = { 0: "₀", 1: "₁", 2: "₂", 3: "₃", 4: "₄", 5: "₅", 6: "₆", 7: "₇", 8: "₈", 9: "₉" };
 
@@ -166,6 +153,26 @@
 
   const allEntries = sections.flatMap((section) => section.entries);
 
+  /** Extract a DOI from the `doi` field or from a doi.org / publisher URL. */
+  function doiFor(entry) {
+    if (entry.doi) return cleanBibTeX(entry.doi);
+    const match = cleanBibTeX(entry.html).match(/\b(10\.\d{4,9}\/[^\s?#]+)/);
+    return match ? match[1] : "";
+  }
+
+  /** Only visible bibliographic fields are searched, so a query such as "2024" matches publication years, not download dates or file names. */
+  function searchableText(entry) {
+    return [entry.title, entry.author, entry.journal, entry.booktitle, entry.school, entry.abbr, entry.year, entry.keywords, entry.status]
+      .map(cleanBibTeX)
+      .join(" ")
+      .normalize("NFKC")
+      .toLowerCase();
+  }
+
+  /* ================================================================
+     3. Rendering one publication
+     ================================================================ */
+
   function normalizedAuthorName(author) {
     return cleanBibTeX(author).toLowerCase().replace(/\s+/g, " ");
   }
@@ -223,6 +230,13 @@
     }
 
     return output;
+  }
+
+  function statusLabel(entry) {
+    const status = cleanBibTeX(entry.status);
+    if (!status) return "";
+    const label = statusLabels[status.toLowerCase()] || { zh: status, en: status };
+    return ` <span class="pub-status">(${localized(label)})</span>`;
   }
 
   function publicationMedia(entry, root) {
@@ -320,6 +334,10 @@
     `;
   }
 
+  /* ================================================================
+     4. Buttons, panels and author lists
+     ================================================================ */
+
   function connectInteractions(container) {
     container.querySelectorAll("[data-panel]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -399,6 +417,32 @@
 
     applyLanguage(currentLanguage(), container);
   }
+
+  function applyLanguage(language, scope = document) {
+    const suffix = language === "zh" ? "Zh" : "En";
+
+    scope.querySelectorAll?.("[data-zh][data-en]").forEach((element) => {
+      element.textContent = element.dataset[language];
+    });
+
+    scope.querySelectorAll?.(".more-authors").forEach((button) => {
+      button.textContent = button.dataset[`collapsed${suffix}`];
+    });
+
+    scope.querySelectorAll?.(".authors-more-names").forEach((names) => {
+      names.setAttribute("aria-label", names.dataset[`label${suffix}`]);
+    });
+
+    scope.querySelectorAll?.(".bib-copy").forEach((button) => {
+      button.textContent = button.dataset.copied === "true"
+        ? button.dataset[`copied${suffix}`]
+        : button.dataset[`label${suffix}`];
+    });
+  }
+
+  /* ================================================================
+     5. Lists used by the pages
+     ================================================================ */
 
   function renderGrouped(container, query, root) {
     const normalizedQuery = cleanBibTeX(query).normalize("NFKC").toLowerCase();
@@ -489,28 +533,6 @@
     input.addEventListener("input", () => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(render, 250);
-    });
-  }
-
-  function applyLanguage(language, scope = document) {
-    const suffix = language === "zh" ? "Zh" : "En";
-
-    scope.querySelectorAll?.("[data-zh][data-en]").forEach((element) => {
-      element.textContent = element.dataset[language];
-    });
-
-    scope.querySelectorAll?.(".more-authors").forEach((button) => {
-      button.textContent = button.dataset[`collapsed${suffix}`];
-    });
-
-    scope.querySelectorAll?.(".authors-more-names").forEach((names) => {
-      names.setAttribute("aria-label", names.dataset[`label${suffix}`]);
-    });
-
-    scope.querySelectorAll?.(".bib-copy").forEach((button) => {
-      button.textContent = button.dataset.copied === "true"
-        ? button.dataset[`copied${suffix}`]
-        : button.dataset[`label${suffix}`];
     });
   }
 

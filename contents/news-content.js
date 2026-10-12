@@ -1,8 +1,8 @@
 /**
- * News page and home page news data
- * ---------------------------------
- * To add a news item, copy a complete { ... } object to the top of the items array.
- * The home page shows the first few items, while the News page retains the full chronological archive.
+ * News content
+ * ------------
+ * Used by the News page and the home page. Add a new item by copying a complete
+ * { ... } object to the top of the items array; keep the newest item first.
  */
 
 window.NEWS_CONTENT = {

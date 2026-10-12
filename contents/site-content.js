@@ -1,7 +1,7 @@
 /**
  * Shared site settings
  * --------------------
- * This file contains information used on every page: name, navigation, and footer.
+ * Name, navigation and footer year, used on every page.
  */
 
 window.SITE_CONTENT = {

@@ -1,4 +1,9 @@
-/** Wildfire Chemistry theme: edit its card, details, images, and related publications here. */
+/**
+ * Research theme: Chlorine activation by volcanic and wildfire aerosols
+ * ---------------------------------------------------------------------
+ * Card on the Research page and the detail page projects/wildfire.html: text, images
+ * and related publications (BibTeX keys from contents/*.bib).
+ */
 
 window.RESEARCH_PROJECTS = window.RESEARCH_PROJECTS || [];
 window.RESEARCH_PROJECTS.push({

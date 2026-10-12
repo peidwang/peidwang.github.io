@@ -1,4 +1,8 @@
-/** Publications page title and search labels. Add publication entries to contents/*.bib. */
+/**
+ * Publications page content
+ * -------------------------
+ * Page title and search labels. The publications themselves are in contents/*.bib.
+ */
 
 window.PAGE_CONTENT = {
   title: { zh: "学术论文", en: "Publications" },

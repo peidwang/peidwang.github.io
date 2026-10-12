@@ -1,7 +1,9 @@
 /**
  * Home page content
  * -----------------
- * Edit this file to change the hero animation, selected publications, or number of news items shown on the home page.
+ * Hero animation and title, section titles, and how many news items and
+ * selected publications the home page shows. Selected publications are the entries
+ * marked selected = {true} in contents/papers.bib.
  */
 
 window.PAGE_CONTENT = {

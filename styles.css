@@ -1,12 +1,36 @@
-/* Self-hosted fonts (SIL Open Font License, see assets/fonts/LICENSE-OFL.txt).
-   Hosting locally avoids fonts.googleapis.com, which is blocked in mainland China. */
+/* ================================================================
+   Peidong Wang · site styles
+   ----------------------------------------------------------------
+   1.  Fonts
+   2.  Design tokens
+   3.  Base elements and page transitions
+   4.  Shared layout: header, page titles, content columns, footer
+   5.  Home page
+   6.  News list (home page and News page)
+   7.  Research overview and detail pages
+   8.  Publications
+   9.  Teaching
+   10. About
+   11. 404 page
+   12. Responsive layout
+   13. Reduced motion
+   ================================================================ */
+
+
+/* ================================================================
+   1. Fonts
+   Self-hosted (SIL Open Font License, see assets/fonts/LICENSE-OFL.txt)
+   so the site does not depend on fonts.googleapis.com, which is
+   blocked in mainland China. Chinese text falls back to system fonts.
+   ================================================================ */
+
 @font-face {
   font-family: "Source Sans 3";
   font-style: normal;
   font-display: swap;
   font-weight: 200 900;
   src: url("assets/fonts/source-sans-3-latin-wght-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -15,7 +39,7 @@
   font-display: swap;
   font-weight: 200 900;
   src: url("assets/fonts/source-serif-4-latin-opsz-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -24,32 +48,47 @@
   font-display: swap;
   font-weight: 200 900;
   src: url("assets/fonts/source-serif-4-latin-opsz-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+
 /* ================================================================
-   1. Design tokens and base styles
+   2. Design tokens
    ================================================================ */
 
 :root {
-  --navy: #163f75;
-  --ink: #253746;
-  --muted: #566676;
+  /* Colors */
+  --navy: #163f75;            /* headings, navigation, section rules */
+  --ink: #253746;             /* body text and icons */
+  --muted: #566676;           /* secondary text: authors, dates, captions */
   --paper: #ffffff;
-  --soft: #f3f6fa;
-  --line: #d8e1ea;
-  --accent: #1f66c2; /* clear sky blue: links and interactive states */
-  --accent-strong: #154c94;
-  --control-line: #b4c1ce;
+  --soft: #f3f6fa;            /* page-title band, footer, panels */
+  --line: #d8e1ea;            /* thin dividers */
+  --accent: #1f66c2;          /* links and interactive states */
+  --accent-strong: #154c94;   /* link hover */
+  --accent-rgb: 31 102 194;   /* --accent as RGB channels, for tints */
+  --control-line: #b4c1ce;    /* button and input borders */
   --code-ink: #33495d;
-  --hero-background: #020102;
+  --hero-background: #020102; /* matches the black background of the home animation */
+
+  /* Type */
   --serif: "Source Serif 4", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
   --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-  --content-width: 1120px;
-  --page-width: 1000px; /* interior pages: title and content share one centered column */
-  --article-width: 780px; /* research detail pages */
+
+  /* Layout */
+  --content-width: 1120px;    /* header and home page */
+  --page-width: 1000px;       /* interior pages: title and content share this column */
+  --article-width: 780px;     /* research detail pages */
+  --gutter: 24px;             /* minimum space at the screen edges */
+
+  /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+
+/* ================================================================
+   3. Base elements and page transitions
+   ================================================================ */
 
 * {
   box-sizing: border-box;
@@ -67,53 +106,25 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-synthesis: none;
   font-size: 17px;
+  font-synthesis: none;
   line-height: 1.58;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-#page-content {
-  flex: 1;
-}
-
 ::selection {
-  background: rgb(31 102 194 / 18%);
+  background: rgb(var(--accent-rgb) / 18%);
   color: var(--ink);
-}
-
-#page-content,
-#site-footer {
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 360ms var(--ease-out),
-    transform 360ms var(--ease-out);
-}
-
-body.page-ready #page-content,
-body.page-ready #site-footer {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-body.page-leaving #page-content,
-body.page-leaving #site-footer {
-  opacity: 0;
-  transform: translateY(-7px);
-  transition-duration: 170ms;
-}
-
-body.language-changing #page-content {
-  opacity: 0.35;
-  transform: translateY(3px);
-  transition-duration: 100ms;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 a {
@@ -144,32 +155,65 @@ input:focus-visible {
   outline-offset: 4px;
 }
 
-h1,
-h2,
-h3 {
-  text-wrap: wrap;
+/* Pages fade in on load and out when following an internal link (see script.js). */
+#page-content {
+  flex: 1;
 }
 
-p {
-  text-wrap: pretty;
+#page-content,
+#site-footer {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 360ms var(--ease-out),
+    transform 360ms var(--ease-out);
 }
+
+body.page-ready #page-content,
+body.page-ready #site-footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.page-leaving #page-content,
+body.page-leaving #site-footer {
+  opacity: 0;
+  transform: translateY(-7px);
+  transition-duration: 170ms;
+}
+
+body.language-changing #page-content {
+  opacity: 0.35;
+  transform: translateY(3px);
+  transition-duration: 100ms;
+}
+
+.noscript-note {
+  max-width: var(--content-width);
+  margin: 40px auto;
+  padding: 0 var(--gutter);
+  color: var(--muted);
+}
+
 
 /* ================================================================
-   2. Shared header and navigation
+   4. Shared layout
    ================================================================ */
+
+/* ---- Header and navigation ---- */
 
 .site-header {
   position: relative;
   z-index: 100;
   min-height: 78px;
-  padding: 0 max(24px, calc((100vw - var(--content-width)) / 2));
+  padding: 0 max(var(--gutter), calc((100vw - var(--content-width)) / 2));
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
   align-items: center;
-  background: var(--paper);
   border-top: 5px solid var(--navy);
   border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .menu-toggle {
@@ -201,10 +245,10 @@ p {
 .language-toggle {
   grid-column: 2;
   justify-self: end;
+  padding: 6px 9px;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 9px;
   border: 1px solid var(--control-line);
   border-radius: 3px;
   background: var(--paper);
@@ -214,22 +258,22 @@ p {
 }
 
 .language-toggle i {
+  position: relative;
   width: 20px;
   height: 10px;
-  position: relative;
   border-radius: 10px;
   background: var(--navy);
 }
 
 .language-toggle i::after {
-  content: "";
-  width: 6px;
-  height: 6px;
   position: absolute;
   top: 2px;
   left: 2px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--paper);
+  content: "";
   transition: transform 180ms ease;
 }
 
@@ -242,22 +286,73 @@ p {
   font-weight: 600;
 }
 
-/* ================================================================
-   3. Shared typography and controls
-   ================================================================ */
+/* ---- Interior page title band ---- */
 
-.tag {
-  margin: 0 0 8px;
-  color: var(--navy);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.page-hero {
+  padding: 44px max(var(--gutter), calc((100% - var(--page-width)) / 2)) 40px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(110deg, var(--soft) 0%, #f8fafc 76%);
 }
 
+.page-hero h1 {
+  max-width: 980px;
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.7vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.07;
+}
+
+/* ---- Content columns ----
+   Interior pages share one centered column with the title band above,
+   so title and content start on the same left edge. */
+
+.research-card-list,
+.bib-browser,
+.news-archive,
+.teaching-page,
+.about-profile,
+.not-found {
+  width: min(var(--page-width), calc(100% - 2 * var(--gutter)));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.project-page {
+  width: min(var(--article-width), calc(100% - 2 * var(--gutter)));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ---- Text links shared by several pages ---- */
+
+.section-head > a:hover,
+.back-link:hover,
+.profile-links a:hover {
+  color: var(--accent-strong);
+  text-underline-offset: 7px;
+}
+
+/* ---- Footer ---- */
+
+.compact-footer {
+  padding: 26px max(var(--gutter), calc((100% - var(--content-width)) / 2)) 30px;
+  border-top: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+
 /* ================================================================
-   4. Home page
+   5. Home page
    ================================================================ */
+
+/* ---- Hero banner ---- */
 
 .hero {
   max-width: var(--content-width);
@@ -289,7 +384,6 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--paper);
   background: linear-gradient(
     90deg,
     rgb(2 1 2 / 96%) 0%,
@@ -297,6 +391,16 @@ p {
     rgb(2 1 2 / 22%) 50%,
     transparent 68%
   );
+  color: var(--paper);
+}
+
+.hero-eyebrow {
+  margin: 0 0 14px;
+  color: rgb(255 255 255 / 78%);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .hero-banner-mask h2 {
@@ -310,23 +414,13 @@ p {
   text-wrap: balance;
 }
 
-.hero-eyebrow {
-  margin: 0 0 14px;
-  color: rgb(255 255 255 / 78%);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+/* Chinese titles break after punctuation, not inside a word. */
+html[lang="zh-CN"] .hero-banner-mask h2 {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
-.section-head h2 {
-  margin: 0;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 39px;
-  font-weight: 500;
-  line-height: 1.15;
-}
+/* ---- Sections ---- */
 
 .content-section {
   max-width: var(--content-width);
@@ -341,12 +435,27 @@ p {
   align-items: flex-end;
 }
 
+.section-head h2 {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 39px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
 .section-head > a {
   color: var(--accent);
   font-size: 14px;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
+
+.news-section {
+  border-top: 1px solid var(--line);
+}
+
+/* ---- Selected publications ---- */
 
 .featured-grid {
   display: grid;
@@ -361,10 +470,6 @@ p {
   border-top: 2px solid var(--navy);
 }
 
-.featured-grid article:hover img {
-  transform: translateY(-4px);
-}
-
 .featured-grid img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -372,6 +477,10 @@ p {
   border: 1px solid var(--line);
   background: var(--paper);
   object-fit: contain;
+}
+
+.featured-grid article:hover img {
+  transform: translateY(-4px);
 }
 
 .featured-grid p {
@@ -401,9 +510,10 @@ p {
   text-underline-offset: 4px;
 }
 
-.news-section {
-  border-top: 1px solid var(--line);
-}
+
+/* ================================================================
+   6. News list
+   ================================================================ */
 
 .news-list {
   border-top: 1px solid var(--line);
@@ -419,18 +529,17 @@ p {
   text-decoration: none;
 }
 
-.news-list a:hover > span {
-  color: var(--accent);
-}
-
 .news-list a:hover {
   background: var(--soft);
+}
+
+.news-list a:hover > span {
+  color: var(--accent);
 }
 
 .news-list time,
 .news-list b {
   padding-top: 2px;
-  color: var(--muted);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
@@ -445,9 +554,9 @@ p {
   text-align: right;
 }
 
+/* ---- News page ---- */
+
 .news-archive {
-  max-width: 1000px;
-  margin: auto;
   padding: 46px 0 84px;
 }
 
@@ -480,7 +589,7 @@ p {
 .news-archive > .news-list a:hover,
 .news-archive > .news-list a:focus-visible {
   padding-left: 10px;
-  background: linear-gradient(90deg, rgb(31 102 194 / 6%), transparent 48%);
+  background: linear-gradient(90deg, rgb(var(--accent-rgb) / 6%), transparent 48%);
 }
 
 .news-archive > .news-list a:hover::before,
@@ -489,34 +598,14 @@ p {
   transform: scaleX(1);
 }
 
-/* ================================================================
-   5. Interior page headers
-   ================================================================ */
-
-.page-hero {
-  padding: 44px max(24px, calc((100% - var(--page-width)) / 2)) 40px;
-  background: linear-gradient(110deg, var(--soft) 0%, #f8fafc 76%);
-  border-bottom: 1px solid var(--line);
-}
-
-.page-hero h1 {
-  max-width: 980px;
-  margin: 0;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: clamp(44px, 5.7vw, 68px);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.07;
-}
 
 /* ================================================================
-   6. Research listing and detail pages
+   7. Research overview and detail pages
    ================================================================ */
+
+/* ---- Overview cards ---- */
 
 .research-card-list {
-  max-width: var(--content-width);
-  margin: auto;
   padding: 48px 0 82px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -572,13 +661,13 @@ p {
   font-weight: 600;
 }
 
-.research-card:hover h2 {
-  color: var(--accent);
-}
-
 .research-card:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
+}
+
+.research-card:hover h2 {
+  color: var(--accent);
 }
 
 .research-card:hover img {
@@ -586,9 +675,9 @@ p {
   transform: scale(1.012);
 }
 
+/* ---- Detail pages ---- */
+
 .project-page {
-  max-width: 960px;
-  margin: auto;
   padding: 58px 0 88px;
 }
 
@@ -636,8 +725,8 @@ p {
 .project-figure img {
   width: 100%;
   max-height: 520px;
-  object-fit: contain;
   background: var(--paper);
+  object-fit: contain;
 }
 
 .project-figure figcaption {
@@ -666,165 +755,15 @@ p {
   margin-top: 10px;
 }
 
-/* ================================================================
-   7. About page
-   ================================================================ */
-
-.about-profile {
-  max-width: 1000px;
-  margin: auto;
-  padding: 56px 0 88px;
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
-  gap: 52px;
-  align-items: start;
-}
-
-.about-profile > img {
-  width: 100%;
-  padding: 6px;
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--line);
-  object-fit: cover;
-  filter: saturate(0.84);
-}
-
-.about-profile h2 {
-  margin: 4px 0 0;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 45px;
-  font-weight: 500;
-}
-
-.about-name-row {
-  margin-bottom: 10px;
-}
-
-.about-profile p {
-  color: var(--ink);
-  line-height: 1.68;
-}
-
-.about-biography p {
-  margin: 0 0 14px;
-}
-
-.about-biography a {
-  color: var(--accent);
-  font-weight: 500;
-  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  text-underline-offset: 3px;
-}
-
-.about-biography a:hover {
-  color: var(--accent-strong);
-  text-decoration-color: var(--accent-strong);
-  text-underline-offset: 5px;
-}
-
-.profile-links {
-  margin: 0 0 26px;
-  padding-bottom: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 22px;
-  border-bottom: 1px solid var(--line);
-}
-
-.profile-links .profile-email {
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 500;
-  user-select: all;
-}
-
-.profile-links a {
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
-  text-underline-offset: 4px;
-}
-
-.profile-links a:hover,
-.back-link:hover,
-.section-head > a:hover {
-  color: var(--accent-strong);
-  text-underline-offset: 7px;
-}
 
 /* ================================================================
-   8. Teaching page
+   8. Publications
+   Used on the Publications page and in "Related Publications".
    ================================================================ */
 
-.teaching-page {
-  max-width: 1000px;
-  margin: auto;
-  padding: 50px 0 88px;
-}
-
-.teaching-history {
-  max-width: none;
-}
-
-.teaching-entry {
-  padding: 24px 0 26px;
-  display: grid;
-  grid-template-columns: 135px minmax(0, 1fr);
-  gap: 24px;
-  border-top: 1px solid var(--line);
-}
-
-.teaching-entry:first-of-type {
-  border-top: 2px solid var(--navy);
-}
-
-.teaching-meta p {
-  margin: 0 0 5px;
-  color: var(--navy);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.035em;
-}
-
-.teaching-meta p:last-child {
-  color: var(--muted);
-  font-weight: 400;
-}
-
-.teaching-entry h2 {
-  margin: -3px 0 9px;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-wrap: wrap;
-}
-
-.teaching-entry h3 {
-  margin: 0 0 3px;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
-}
-
-.teaching-entry > div:last-child > p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-}
-
-/* ================================================================
-   9. Publication browser
-   ================================================================ */
+/* ---- Search ---- */
 
 .bib-browser {
-  max-width: 1000px;
-  margin: auto;
   padding: 48px 0 88px;
 }
 
@@ -848,16 +787,23 @@ p {
   font: 16px var(--sans);
 }
 
+.bib-browser input:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+
 .corresponding-note {
   margin: 8px 0 38px;
   color: var(--muted);
   font-size: 14px;
 }
 
-.bib-browser input:focus {
-  border-color: var(--accent);
-  background: var(--paper);
+.no-results {
+  padding: 40px 0;
+  color: var(--muted);
 }
+
+/* ---- Section and year headings ---- */
 
 .pub-section-title {
   margin: 46px 0 0;
@@ -879,6 +825,8 @@ p {
   font-weight: 500;
 }
 
+/* ---- Entry ---- */
+
 .bib-entry {
   padding: 22px 0;
   display: grid;
@@ -886,6 +834,10 @@ p {
   gap: 24px;
   border-bottom: 1px solid var(--line);
   animation: publication-in 360ms var(--ease-out) both;
+}
+
+.related-publications .bib-entry {
+  grid-template-columns: 135px minmax(0, 1fr);
 }
 
 @keyframes publication-in {
@@ -900,14 +852,11 @@ p {
   }
 }
 
-.related-publications .bib-entry {
-  grid-template-columns: 135px minmax(0, 1fr);
-}
-
 .pub-media {
   align-self: start;
 }
 
+/* Journal badge */
 .pub-media > span {
   max-width: 100%;
   margin-bottom: 5px;
@@ -963,6 +912,11 @@ p {
   margin: 3px 0 0;
 }
 
+.authors strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .venue {
   margin: 2px 0 0;
 }
@@ -972,9 +926,9 @@ p {
   font-style: italic;
 }
 
-.authors strong {
-  color: var(--ink);
-  font-weight: 600;
+/* Manuscript status after the venue, e.g. "(Under review)" */
+.pub-status {
+  color: var(--muted);
 }
 
 .corresponding-mark {
@@ -984,6 +938,8 @@ p {
   font-weight: 600;
   line-height: 0;
 }
+
+/* ---- "and N more authors" ---- */
 
 .more-authors {
   padding: 0;
@@ -995,6 +951,10 @@ p {
   text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
   text-underline-offset: 3px;
   cursor: pointer;
+}
+
+.more-authors:hover {
+  color: var(--ink);
 }
 
 .authors-more-names {
@@ -1011,6 +971,10 @@ p {
     max-width 520ms var(--ease-out),
     opacity 260ms ease,
     transform 360ms var(--ease-out);
+}
+
+.authors-more.expanded .more-authors {
+  display: none;
 }
 
 .authors-more.expanded .authors-more-names {
@@ -1031,13 +995,7 @@ p {
   text-decoration-color: color-mix(in srgb, var(--muted) 68%, transparent);
 }
 
-.authors-more.expanded .more-authors {
-  display: none;
-}
-
-.more-authors:hover {
-  color: var(--ink);
-}
+/* ---- ABS / BIB / HTML / PDF / NEWS buttons ---- */
 
 .pub-actions {
   margin-top: 13px;
@@ -1059,11 +1017,6 @@ p {
   cursor: pointer;
 }
 
-.pub-actions button:active,
-.pub-actions a:active {
-  transform: translateY(1px);
-}
-
 .pub-actions button:hover,
 .pub-actions button.active,
 .pub-actions a:hover {
@@ -1071,6 +1024,13 @@ p {
   background: var(--accent);
   color: var(--paper);
 }
+
+.pub-actions button:active,
+.pub-actions a:active {
+  transform: translateY(1px);
+}
+
+/* ---- Expanding abstract and BibTeX panels ---- */
 
 .pub-extra {
   margin-top: 0;
@@ -1091,11 +1051,6 @@ p {
     transform 420ms var(--ease-out);
 }
 
-.pub-extra-inner {
-  min-height: 0;
-  overflow: hidden;
-}
-
 .pub-extra.open {
   margin-top: 12px;
   padding: 16px;
@@ -1105,11 +1060,9 @@ p {
   transform: translateY(0);
 }
 
-.bibtex-panel code {
-  display: block;
-  color: var(--code-ink);
-  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
-  white-space: pre-wrap;
+.pub-extra-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .abstract-panel p {
@@ -1118,44 +1071,250 @@ p {
   line-height: 1.65;
 }
 
+.bibtex-panel code {
+  display: block;
+  color: var(--code-ink);
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+}
+
 .bib-copy {
   margin: 0 0 10px;
 }
 
-.no-results {
-  padding: 40px 0;
-  color: var(--muted);
-}
 
 /* ================================================================
-   10. Footer
+   9. Teaching
    ================================================================ */
 
-.compact-footer {
-  padding: 26px max(24px, calc((100% - var(--content-width)) / 2)) 30px;
-  border-top: 1px solid var(--line);
-  background: var(--soft);
-  color: var(--muted);
-  text-align: center;
-  font-size: 13px;
-  letter-spacing: 0.01em;
+.teaching-page {
+  padding: 50px 0 88px;
 }
 
+.teaching-entry {
+  padding: 24px 0 26px;
+  display: grid;
+  grid-template-columns: 135px minmax(0, 1fr);
+  gap: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.teaching-entry:first-of-type {
+  border-top: 2px solid var(--navy);
+}
+
+.teaching-meta p {
+  margin: 0 0 5px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
+.teaching-meta p:last-child {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.teaching-entry h2 {
+  margin: -3px 0 9px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.teaching-entry h3 {
+  margin: 0 0 3px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.teaching-entry > div:last-child > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+
 /* ================================================================
-   11. Responsive layout
+   10. About
+   ================================================================ */
+
+.about-profile {
+  padding: 56px 0 88px;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+}
+
+.about-profile > img {
+  width: 100%;
+  padding: 6px;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  filter: saturate(0.84);
+}
+
+/* The top of the name lines up with the top of the photo frame.
+   Chinese glyphs sit higher in the line, so they need less offset. */
+.about-profile h2 {
+  margin: -0.16em 0 12px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+html[lang="zh-CN"] .about-profile h2 {
+  margin-top: -0.03em;
+}
+
+/* ---- Email, CV, Google Scholar, ORCID ---- */
+
+.profile-links {
+  margin: 0 0 26px;
+  padding: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 26px;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.profile-links li {
+  margin: 0;
+}
+
+.profile-links a,
+.profile-links .profile-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.profile-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Only the label is underlined, not the icon. */
+.profile-links a span {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 4px;
+}
+
+.profile-links a:hover span {
+  text-decoration-color: currentColor;
+}
+
+.profile-links .profile-email {
+  color: var(--ink);
+  user-select: all;
+}
+
+/* Icons stay neutral; only the link text is blue. */
+.profile-icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--ink);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ORCID iD: a one-color copy of the official SVG, used as a mask and filled with the icon color. */
+.profile-icon-mask {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+/* ---- Biography ---- */
+
+.about-biography p {
+  margin: 0 0 14px;
+  color: var(--ink);
+  line-height: 1.68;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.about-biography a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-underline-offset: 3px;
+}
+
+.about-biography a:hover {
+  color: var(--accent-strong);
+  text-decoration-color: var(--accent-strong);
+  text-underline-offset: 5px;
+}
+
+
+/* ================================================================
+   11. 404 page
+   ================================================================ */
+
+.not-found {
+  padding: 56px 0 96px;
+}
+
+.not-found p {
+  max-width: 620px;
+  margin: 0 0 28px;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.not-found-links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  list-style: none;
+}
+
+.not-found-links a {
+  color: var(--accent);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+
+.not-found-links a:hover {
+  color: var(--accent-strong);
+}
+
+
+/* ================================================================
+   12. Responsive layout
    ================================================================ */
 
 @media (max-width: 1168px) {
   .hero,
-  .content-section,
-  .research-card-list,
-  .about-profile,
-  .project-page,
-  .bib-browser,
-  .news-archive,
-  .teaching-page {
-    margin-right: 24px;
-    margin-left: 24px;
+  .content-section {
+    margin-right: var(--gutter);
+    margin-left: var(--gutter);
   }
 }
 
@@ -1163,6 +1322,8 @@ p {
   body {
     font-size: 16px;
   }
+
+  /* ---- Header becomes a menu button ---- */
 
   .site-header {
     min-height: 64px;
@@ -1176,11 +1337,11 @@ p {
     height: 42px;
     grid-column: 1;
     justify-self: start;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    padding: 10px;
     border: 0;
     background: transparent;
     color: var(--navy);
@@ -1212,11 +1373,11 @@ p {
   }
 
   .site-header nav {
-    width: 100%;
-    max-height: 0;
     position: absolute;
     top: 100%;
     left: 0;
+    width: 100%;
+    max-height: 0;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -1263,9 +1424,21 @@ p {
     grid-column: 2;
   }
 
+  /* ---- Page titles ---- */
+
+  .page-hero {
+    padding: 36px var(--gutter) 34px;
+  }
+
+  .page-hero h1 {
+    font-size: 43px;
+  }
+
+  /* ---- Home ---- */
+
   .hero {
     margin: 0;
-    padding: 24px 24px 40px;
+    padding: 24px var(--gutter) 40px;
   }
 
   .hero-banner {
@@ -1286,18 +1459,13 @@ p {
     );
   }
 
-  .hero-banner-mask h2 {
-    font-size: 40px;
-  }
-
   .hero-eyebrow {
     margin-bottom: 10px;
     font-size: 11px;
   }
 
-  .featured-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .hero-banner-mask h2 {
+    font-size: 40px;
   }
 
   .content-section {
@@ -1309,10 +1477,12 @@ p {
     font-size: 35px;
   }
 
-  .research-card-list {
+  .featured-grid {
     grid-template-columns: 1fr;
-    row-gap: 28px;
+    gap: 32px;
   }
+
+  /* ---- News ---- */
 
   .news-list a {
     grid-template-columns: 1fr;
@@ -1323,23 +1493,11 @@ p {
     text-align: left;
   }
 
-  .teaching-entry {
+  /* ---- Research ---- */
+
+  .research-card-list {
     grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .page-hero {
-    padding: 36px 24px 34px;
-  }
-
-  .page-hero h1 {
-    font-size: 43px;
-  }
-
-  .about-profile {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding-top: 40px;
+    row-gap: 28px;
   }
 
   .research-card img {
@@ -1350,6 +1508,8 @@ p {
   .project-page {
     padding-top: 38px;
   }
+
+  /* ---- Publications ---- */
 
   .bib-entry,
   .related-publications .bib-entry {
@@ -1368,6 +1528,21 @@ p {
     max-width: 100%;
     white-space: normal;
   }
+
+  /* ---- Teaching ---- */
+
+  .teaching-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* ---- About ---- */
+
+  .about-profile {
+    padding-top: 40px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1376,13 +1551,21 @@ p {
   }
 
   .language-toggle {
-    gap: 6px;
     padding: 5px 7px;
+    gap: 6px;
     font-size: 12px;
+  }
+
+  .page-hero h1 {
+    font-size: 39px;
   }
 
   .hero-banner-mask h2 {
     font-size: 36px;
+  }
+
+  html[lang="zh-CN"] .hero-banner-mask h2 {
+    font-size: clamp(24px, 7.2vw, 36px);
   }
 
   .section-head {
@@ -1399,16 +1582,8 @@ p {
     font-size: 12px;
   }
 
-  .page-hero h1 {
-    font-size: 39px;
-  }
-
   .research-card h2 {
     font-size: 28px;
-  }
-
-  .about-profile h2 {
-    font-size: 39px;
   }
 
   .project-page > h1 {
@@ -1418,7 +1593,16 @@ p {
   .project-copy > p {
     font-size: 17px;
   }
+
+  .about-profile h2 {
+    font-size: 39px;
+  }
 }
+
+
+/* ================================================================
+   13. Reduced motion
+   ================================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1433,158 +1617,4 @@ p {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Manuscript status shown after the venue, e.g. "(Under review)". */
-.pub-status {
-  color: var(--muted);
-}
-
-.noscript-note {
-  max-width: var(--content-width);
-  margin: 40px auto;
-  padding: 0 24px;
-  color: var(--muted);
-}
-
-/* Keep Chinese hero titles from breaking inside words; lines break after punctuation instead. */
-html[lang="zh-CN"] .hero-banner-mask h2 {
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 480px) {
-  html[lang="zh-CN"] .hero-banner-mask h2 {
-    font-size: clamp(24px, 7.2vw, 36px);
-  }
-}
-
-/* ================================================================
-   12. Shared centered column for interior pages
-   ----------------------------------------------------------------
-   Title (.page-hero) and content use the same width, so both start
-   on one left edge while the whole block stays centered. Placed last
-   so it also applies inside the responsive breakpoints above.
-   ================================================================ */
-
-.research-card-list,
-.bib-browser,
-.news-archive,
-.teaching-page,
-.about-profile {
-  width: min(var(--page-width), calc(100% - 48px));
-  max-width: none;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.project-page {
-  width: min(var(--article-width), calc(100% - 48px));
-  max-width: none;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (max-width: 800px) {
-  .page-hero {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-}
-
-/* About biography: justified so both edges of the text line up. */
-.about-biography p {
-  text-align: justify;
-  hyphens: auto;
-}
-
-/* About links with icons: email, CV, Google Scholar, ORCID */
-.about-profile .about-name-row {
-  display: block;
-  margin-bottom: 12px;
-}
-
-.about-profile .profile-links {
-  margin: 0 0 26px;
-  padding: 0 0 18px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 26px;
-  border-bottom: 1px solid var(--line);
-  list-style: none;
-}
-
-.about-profile .profile-links li {
-  margin: 0;
-}
-
-.about-profile .profile-links a,
-.about-profile .profile-links .profile-email {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 14.5px;
-  font-weight: 500;
-}
-
-.about-profile .profile-links a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.about-profile .profile-links a span {
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
-  text-underline-offset: 4px;
-}
-
-.about-profile .profile-links a:hover span {
-  text-decoration-color: currentColor;
-}
-
-.about-profile .profile-links .profile-email {
-  color: var(--ink);
-  user-select: all;
-}
-
-.profile-icon {
-  width: 17px;
-  height: 17px;
-  flex: none;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.about-profile .profile-links .profile-email .profile-icon {
-  color: var(--muted);
-}
-
-/* ORCID iD icon: a one-color copy of the official SVG is used as a mask and filled with the link color. */
-.profile-icon-mask {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-color: currentColor;
-  -webkit-mask: var(--icon) center / contain no-repeat;
-  mask: var(--icon) center / contain no-repeat;
-}
-
-/* About links: icons in one neutral color; only the link text is blue. */
-.about-profile .profile-links a .profile-icon,
-.about-profile .profile-links .profile-email .profile-icon {
-  color: var(--ink);
-}
-
-/* About: the top of the name lines up with the top of the photo frame. */
-.about-profile h2 {
-  margin-top: -0.16em;
-  line-height: 1.1;
-}
-
-html[lang="zh-CN"] .about-profile h2 {
-  margin-top: -0.03em;
 }

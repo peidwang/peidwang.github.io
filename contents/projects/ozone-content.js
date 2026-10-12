@@ -1,4 +1,9 @@
-/** Ozone Recovery theme: edit its card, details, images, and related publications here. */
+/**
+ * Research theme: Ozone depletion and recovery
+ * --------------------------------------------
+ * Card on the Research page and the detail page projects/ozone.html: text, images
+ * and related publications (BibTeX keys from contents/*.bib).
+ */
 
 window.RESEARCH_PROJECTS = window.RESEARCH_PROJECTS || [];
 window.RESEARCH_PROJECTS.push({

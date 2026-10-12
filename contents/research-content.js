@@ -1,7 +1,7 @@
 /**
  * Research overview page content
  * ------------------------------
- * Each research card is populated from its corresponding file in contents/projects/.
+ * Each research card is built from its file in contents/projects/.
  */
 
 window.PAGE_CONTENT = {

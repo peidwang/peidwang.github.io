@@ -1,278 +1,196 @@
-# Peidong Wang Academic Website
+# Peidong Wang · Academic Website
 
-This is a bilingual academic website designed for direct deployment to GitHub Pages.
+Source of [peidwang.com](https://peidwang.com), a bilingual (Chinese/English) academic website deployed with GitHub Pages.
 
-The site separates editable content from layout and rendering code. Routine updates usually require changes only to:
+Content and code are kept apart. Routine updates only touch the files in `contents/` and `assets/`; the HTML, CSS and JavaScript rarely need editing.
 
-- `contents/home-content.js`: home page
-- `contents/news-content.js`: News page and home-page news
-- `contents/research-content.js`: Research overview title
-- `contents/publications-content.js`: Publications title and search text
-- `contents/teaching-content.js`: Teaching page and teaching-assistant experience
-- `contents/about-content.js`: About page and biography
-- `contents/projects/*-content.js`: individual Research detail pages
-- `contents/inprep.bib`
-- `contents/papers.bib`
-- Images or PDFs under `assets/`
+## Contents
 
-The HTML, CSS, and page-rendering code should not require frequent edits.
+1. [File structure](#file-structure)
+2. [Everyday workflow](#everyday-workflow)
+3. [Updating content](#updating-content)
+4. [Publications](#publications)
+5. [Research themes](#research-themes)
+6. [Images, video and fonts](#images-video-and-fonts)
+7. [Design: colors and styles](#design-colors-and-styles)
+8. [Search engines and the 404 page](#search-engines-and-the-404-page)
+9. [Deployment](#deployment)
+10. [Files not to edit by hand](#files-not-to-edit-by-hand)
 
-## File Structure
+## File structure
 
 ```text
 .
-├── index.html                 # Home page shell
-├── research.html              # Research page shell
-├── publications.html          # Publications page shell
-├── news.html                  # News archive page shell
-├── teaching.html              # Teaching page shell
-├── about.html                 # About page shell
-├── projects/                  # Research detail page shells
+├── index.html, research.html, publications.html,
+│   news.html, teaching.html, about.html   # Page shells (head tags + which scripts to load)
+├── projects/*.html                        # Research detail page shells
+├── 404.html                               # "Page not found" page
 ├── contents/
-│   ├── site-content.js        # Shared name, navigation, and footer settings
-│   ├── home-content.js        # Home hero, selected publications, and news count
-│   ├── news-content.js        # Full News archive; also used by the home page
-│   ├── research-content.js    # Research overview page title
-│   ├── publications-content.js # Publications title and search labels
-│   ├── teaching-content.js    # Teaching page and assistantship records
-│   ├── about-content.js       # About page and biography
-│   ├── projects/              # One content file for each research theme
-│   ├── inprep.bib             # In-preparation or submitted papers
-│   ├── papers.bib             # Peer-reviewed publications
-│   └── bibliography-content.js   # Generated automatically; do not edit by hand
+│   ├── site-content.js                    # Name, navigation, footer year
+│   ├── home-content.js                    # Home: hero, section titles, counts
+│   ├── news-content.js                    # News items (News page and home page)
+│   ├── research-content.js                # Research page title
+│   ├── projects/*-content.js              # One file per research theme
+│   ├── publications-content.js            # Publications page title and search labels
+│   ├── teaching-content.js                # Teaching entries
+│   ├── about-content.js                   # About: photo, biography, links
+│   ├── not-found-content.js               # 404 page text
+│   ├── papers.bib                         # Published and accepted papers
+│   ├── inprep.bib                         # In preparation, submitted, under review
+│   └── bibliography-content.js            # Generated from the .bib files
 ├── assets/
-│   ├── home/                  # Home animation and poster
-│   ├── about/                 # Profile photo and CV
-│   ├── fonts/                 # Self-hosted Source Sans 3 and Source Serif 4
-│   ├── research/              # Research card and detail images
-│   └── publications/          # Publication PDFs and preview images
-├── script.js                  # Page rendering and bilingual switching
-├── publications.js            # BibTeX parsing and publication interactions
-├── styles.css                 # Site-wide styles
+│   ├── home/                              # Hero video (MP4 + WebM) and poster image
+│   ├── about/                             # Profile photo and CV
+│   ├── research/                          # Research card and figure images
+│   ├── publications/papers/               # Paper PDFs
+│   ├── publications/previews/             # Paper preview images
+│   ├── site/                              # Favicon and ORCID iD icon
+│   └── fonts/                             # Self-hosted Source Sans 3 and Source Serif 4
+├── script.js                              # Builds the pages and switches language
+├── publications.js                        # Reads BibTeX; renders publication lists
+├── styles.css                             # All styles
+├── sitemap.xml, robots.txt                # For search engines
 └── scripts/
-    └── sync_bibliography.py   # Generate browser-readable bibliography data
+    ├── sync_bibliography.py               # .bib files → bibliography-content.js
+    ├── check_site.py                      # Health check (read-only)
+    └── make_orcid_icon.py                 # Official ORCID iD SVG → one-color icon
 ```
 
-## 1. Update the Home Animation and Welcome Message
+Every text that appears on the site is written in both languages as `{ zh: "…", en: "…" }`.
 
-Open `contents/home-content.js` and locate:
-
-```js
-heroAnimation: "assets/home/ozone-hole-2020.mp4",
-heroAnimationWebM: "assets/home/ozone-hole-2020.webm", // optional
-heroPoster: "assets/home/ozone-hole-2020-poster.png",
-heroAnimationLabel: {
-  zh: "Chinese animation description",
-  en: "English animation description",
-},
-heroEyebrow: {
-  zh: ["Atmosphere in Chinese", "Ocean in Chinese", "Climate in Chinese"],
-  en: ["Atmosphere", "Ocean", "Climate"],
-},
-heroTitle: {
-  zh: "Chinese welcome message",
-  en: "Welcome to Peidong's website",
-},
-```
-
-Edit the text inside the quotation marks. The animation is a short muted MP4 loop, which is about one tenth the size of an equivalent GIF. To replace it, convert your GIF and place the video and a still poster image in `assets/home/`, then update the `heroAnimation` and `heroPoster` filenames:
+## Everyday workflow
 
 ```bash
-ffmpeg -i input.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 20 -an assets/home/new-animation.mp4
-ffmpeg -i assets/home/new-animation.mp4 -c:v libvpx-vp9 -b:v 0 -crf 34 -an assets/home/new-animation.webm   # optional
+cd /Users/pdwang/Documents/Website
+python3 scripts/sync_bibliography.py     # only needed after editing a .bib file
+python3 scripts/check_site.py            # optional: look for broken links, missing files, unpushed commits
+python3 -m http.server 8000              # preview at http://localhost:8000, stop with Ctrl + C
+git add .
+git commit -m "Describe the change"
+git pull --rebase origin main
+git push origin main
 ```
 
-Visitors who prefer reduced motion see the poster image instead.
+Always preview through `http.server`; opening the HTML files directly does not load everything correctly. If port 8000 is busy, use another number, for example `8001`.
 
-## 2. Add a News Item
+## Updating content
 
-Copy a complete object in the `items` array in `contents/news-content.js` and place it at the top of the list:
+**Home page** (`contents/home-content.js`): hero title, the small line above it (`heroEyebrow`), section titles, and how many news items (`featuredNewsCount`) and selected publications (`featuredPublicationCount`) are shown.
+
+**News** (`contents/news-content.js`): copy a complete item to the top of `items` (newest first). `source` may be a plain string or `{ zh, en }`. For a source in Chinese, add "(in Chinese)" to the English title so English readers know what to expect.
 
 ```js
 {
-  date: {
-    zh: "Chinese date",
-    en: "1 Jan 2027",
-  },
-  title: {
-    zh: "Chinese news title",
-    en: "English news title",
-  },
-  source: {
-    zh: "Chinese source name",
-    en: "English source name",
-  },
-  url: "https://example.com/news",
+  date: { zh: "2027 年 1 月 1 日", en: "1 Jan 2027" },
+  title: { zh: "中文标题", en: "English headline, as published" },
+  source: "MIT News",
+  url: "https://…",
 },
 ```
 
-The home page automatically displays the first few items, while the News page displays the complete archive in array order. Keep items in reverse chronological order. The number shown on the home page is controlled by `featuredNewsCount` in `contents/home-content.js`.
+**Teaching** (`contents/teaching-content.js`): copy an entry to the top of `experiences` and edit `term`, `role`, `course`, `institution`, `department`.
 
-## 3. Update Teaching
+**About** (`contents/about-content.js`):
 
-The Teaching page currently displays three courses. To add a course, copy an existing entry to the top of the `experiences` array in `contents/teaching-content.js`. Each entry contains:
+- `image`: profile photo in `assets/about/`.
+- `biography`: one `{ zh, en }` object per paragraph. Links inside the text use `<a href="…" target="_blank" rel="noreferrer">text</a>`.
+- `links`: shown under the name, each with an icon. A link without `url` (the email address) is plain, selectable text. The icon is chosen from the link: no `url` → envelope, `.pdf` → document, Google Scholar → graduation cap, ORCID → ORCID iD, anything else → chain link. Set `icon: "email" | "cv" | "scholar" | "orcid" | "link"` to choose one yourself.
+- To replace the ORCID iD icon, save the official SVG as `assets/site/orcid-id.svg` and run `python3 scripts/make_orcid_icon.py`.
 
-- `term`: academic term
-- `role`: teaching role
-- `course`: course number and title
-- `institution`: university
-- `department`: department
+**Navigation and footer** (`contents/site-content.js`): site name, menu items, footer year.
 
-## 4. Change the Selected Publications on the Home Page
+## Publications
 
-The home page automatically reads papers marked with `selected = {true}` in `contents/papers.bib`. To feature a paper, add:
-
-```bibtex
-selected = {true},
-```
-
-Remove this field when the paper should no longer appear on the home page. No changes to the home-page content file are required.
-
-The number of papers displayed is controlled by `featuredPublicationCount` in `contents/home-content.js`; the default is 5. If more than 5 papers are marked, only the 5 most recent papers are shown, so the layout remains unchanged.
-
-## 5. Add or Edit a Publication
-
-Choose the appropriate bibliography file based on publication status:
-
-- In preparation or submitted: `contents/inprep.bib`
-- Published or accepted: `contents/papers.bib`
-
-Copying an existing entry is the easiest way to create a new one:
+Add or edit entries in `contents/papers.bib` (published or accepted) or `contents/inprep.bib` (in preparation, submitted, under review), then run `python3 scripts/sync_bibliography.py` and commit both the `.bib` file and `contents/bibliography-content.js`.
 
 ```bibtex
-@article{your_unique_key,
+@article{wang_example_2027,
   title = {Paper Title},
   author = {Wang, Peidong and Collaborator, Name},
   corresponding = {Wang, Peidong},
   journal = {Journal Name},
   year = {2027},
-  abbr = {Journal},
-  abstract = {Paper abstract.},
-  html = {https://doi.org/...},
-  pdf = {Paper_File.pdf},
-  preview = {Paper_Preview.jpg},
+  abbr = {GRL},
+  abstract = {…},
+  html = {https://doi.org/10.xxxx/xxxxx},
+  pdf = {Wang_2027_GRL.pdf},
+  preview = {Wang_2027_GRL.jpg},
+  news = {https://…},
   selected = {true},
 }
 ```
 
-For entries in `contents/inprep.bib`, keep `journal` as the plain journal name and record the manuscript stage in a separate `status` field, for example `status = {Under review}`. Recognized values (`In preparation`, `Submitted`, `Under review`, `In revision`, `Accepted`) are translated automatically on the Chinese site; other values are shown as written.
+| Field | Effect on the site |
+| --- | --- |
+| `corresponding` | Marks corresponding authors with *. Separate several with `and`. |
+| `abbr` | Journal badge above the preview image. |
+| `abstract` | Adds an ABS button. |
+| `html` | HTML button. Use a `https://doi.org/…` link; the DOI is added to the BIB export automatically. |
+| `pdf` | PDF button; file in `assets/publications/papers/`. |
+| `preview` | Preview image; file in `assets/publications/previews/`. |
+| `news` | NEWS button. |
+| `selected = {true}` | Shows the paper on the home page (newest first, up to `featuredPublicationCount`). |
+| `status` | `inprep.bib` only: `In preparation`, `Submitted`, `Under review`, `In revision` or `Accepted`, shown after the journal name and translated on the Chinese site. Keep `journal` as the plain journal name. |
 
-The `corresponding` field identifies corresponding authors. Separate co-corresponding authors with `and`, for example `{Wang, Peidong and Solomon, Susan}`. Entries containing an `abstract` field automatically display an ABS button. Every publication displays a BIB button by default, so `bibtex_show` is unnecessary. Expanded BIB citations automatically omit `abstract`, `corresponding`, `status`, reference-manager fields (`urldate`, `copyright`, `language`, `keywords`, `issn`), and site-only fields for preview images, PDFs, news, and home-page selection. The `html` link is exported as a standard `url` field, and a `doi` field is added automatically when the link contains a DOI. Prefer `https://doi.org/...` links for `html`.
+Every entry has a BIB button. The copied BibTeX leaves out site-only fields (`abstract`, `corresponding`, `abbr`, `pdf`, `preview`, `news`, `selected`, `status`) and reference-manager fields (`urldate`, `copyright`, `language`, `keywords`, `issn`). Search on the Publications page only looks at title, authors, venue, year, keywords and status. For a subscript in a title, write `{N$_2$O}`; the site shows N₂O.
 
-Preview images are shown as small thumbnails, so about 1000 px wide is enough. Use JPG for still images and animated WebP rather than GIF for animations. To write a subscript in a title, use `{N$_2$O}`; the website displays it as N₂O. Add `selected` only when a paper should appear on the home page.
+Everything inside `assets/` is publicly downloadable, even if no page links to it. Check each publisher's self-archiving policy before adding a published PDF.
 
-Store related files in these locations:
+## Research themes
 
-- `pdf` files: `assets/publications/papers/` (check each publisher's self-archiving policy before posting a published PDF; everything in this repository is publicly downloadable, even if no page links to it)
-- `preview` images: `assets/publications/previews/`
+Each theme lives in one file, `contents/projects/<id>-content.js`, which holds the card on the Research page and the detail page: `title`, `summary`, `paragraphs`, `cardImage`, `detailImage`, `figureCaption`, optional `figureSource` (`citation`, optional `url`, `courtesy: true` for "image courtesy of"), and `relatedPublicationKeys` (BibTeX keys).
 
-After editing a `.bib` file, run this command from the site directory:
+To add a theme:
 
-```bash
-python3 scripts/sync_bibliography.py
-```
+1. Copy a `contents/projects/*-content.js` file and change `id`, `page` and the content.
+2. Copy a page shell, e.g. `projects/ocean.html` → `projects/new-topic.html`; change `data-project="ocean"`, the content script name, the title, description and canonical/`og:url` addresses.
+3. Add the new content script to `research.html`.
+4. Add the new page to `sitemap.xml`.
 
-Commit the updated `contents/bibliography-content.js` together with the `.bib` file. This ensures that both branch-based and GitHub Actions deployments use the same bibliography data. The custom GitHub Actions workflow also regenerates the file in its deployment artifact.
+## Images, video and fonts
 
-## 6. Add a Research Theme
+- **Hero animation:** a short muted MP4 plus an optional, smaller WebM (`heroAnimation`, `heroAnimationWebM`, `heroPoster` in `home-content.js`). Visitors who prefer reduced motion see the poster image. To convert a GIF:
 
-Each research theme has a separate content file, for example:
+  ```bash
+  ffmpeg -i input.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 20 -an assets/home/new.mp4
+  ffmpeg -i assets/home/new.mp4 -c:v libvpx-vp9 -b:v 0 -crf 34 -an assets/home/new.webm
+  ```
 
-- `contents/projects/ocean-content.js`
-- `contents/projects/wildfire-content.js`
-- `contents/projects/ozone-content.js`
-- `contents/projects/ml-content.js`
+- **Preview and research images:** about 1000 px wide is enough (2000 px for detailed research figures). Use JPG for still images and animated WebP instead of GIF for animations.
+- **Fonts** are served from `assets/fonts/` rather than Google Fonts, which is blocked in mainland China.
 
-Card text, detailed descriptions, figures, and related publications are all stored in the corresponding file. A single edit updates both the Research overview and the detail page.
+## Design: colors and styles
 
-To add a theme, copy a complete `*-content.js` file and update:
+All colors, fonts and widths are defined once at the top of `styles.css` (section 2, "Design tokens"):
 
-- `id`: unique short English identifier
-- `page`: detail-page path
-- `cardImage`: image used only on the Research overview card
-- `detailImage`: figure shown in the detail-page body
-- `title`: Chinese and English titles
-- `summary`: Chinese and English summaries
-- `paragraphs`: Chinese and English detail paragraphs
-- `figureSource`: optional figure source with a `citation` and optional `url`; add `courtesy: true` for an image courtesy
-- `relatedPublicationKeys`: BibTeX citation keys for related papers
+| Token | Use |
+| --- | --- |
+| `--navy` | Headings, navigation, section rules |
+| `--ink` | Body text and icons |
+| `--muted` | Authors, dates, captions |
+| `--accent`, `--accent-strong`, `--accent-rgb` | Links, buttons and hover states (keep the three in step) |
+| `--soft`, `--line` | Light backgrounds and thin dividers |
+| `--content-width` | Header and home page (1120 px) |
+| `--page-width` | Interior pages: title and content share this centered column (1000 px) |
+| `--article-width` | Research detail pages (780 px) |
 
-Next, copy a detail-page shell, for example:
+`styles.css` is organized by page, with a numbered table of contents at the top. Mobile rules are collected in section 12.
 
-```text
-projects/ocean.html → projects/new-topic.html
-```
+## Search engines and the 404 page
 
-Change `data-project="ocean"` in `<body>` to the new project `id`, and replace the `ocean-content.js` reference with the new filename. Finally, add a `<script>` reference for the new content file to `research.html`.
+- `sitemap.xml` lists every page for Google and other search engines. Add a line when you add a page.
+- `robots.txt` allows search engines to index the site and points them to the sitemap.
+- `404.html` is shown by GitHub Pages for any address that does not exist. It uses absolute paths (`/styles.css`) because it can appear at any address; its text is in `contents/not-found-content.js`.
 
-## 7. Update the About Page
+Optionally, submit `https://peidwang.com/sitemap.xml` in [Google Search Console](https://search.google.com/search-console) to speed up indexing.
 
-The profile photo, category, biography, and links are stored in the `profile` object in `contents/about-content.js`:
+## Deployment
 
-```js
-{
-  name: { zh: "Chinese name", en: "Peidong Wang" },
-  category: { zh: "Chinese role", en: "Postdoctoral Researcher" },
-  image: "assets/about/profile.jpg",
-  biography: [
-    {
-      zh: "First Chinese biography paragraph",
-      en: "First English biography paragraph",
-    },
-    {
-      zh: "Second Chinese biography paragraph",
-      en: "Second English biography paragraph",
-    },
-  ],
-  links: [
-    {
-      label: { zh: "pdwang@stanford.edu", en: "pdwang@stanford.edu" },
-    },
-  ],
-},
-```
+Pushing to `main` runs `.github/workflows/pages.yml`, which regenerates the bibliography data, checks the JavaScript for syntax errors and deploys to GitHub Pages. Progress is shown under the repository's **Actions** tab. In the repository settings, **Pages → Source** must be **GitHub Actions**.
 
-Store the profile photo and CV in `assets/about/`.
+GitHub Pages caches files for about 10 minutes. After deploying, a hard refresh (Cmd + Shift + R) shows the newest version.
 
-Omit `url` when a profile item should appear as selectable plain text rather than a link.
+## Files not to edit by hand
 
-The `biography` array supports multiple paragraphs. To add a link within the text, use:
-
-```html
-<a href="https://example.com/" target="_blank" rel="noreferrer">Link text</a>
-```
-
-## 8. Preview Locally
-
-Do not rely only on opening the HTML files directly. Run a local server from the site directory:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
-
-Pages do not use `?v=` version strings. GitHub Pages caches files for about 10 minutes, so after deployment a hard refresh (Cmd + Shift + R) shows the newest version immediately.
-
-## 9. Deploy to GitHub Pages
-
-Commit the changes and push them to the `main` branch. GitHub Actions will:
-
-1. Generate `bibliography-content.js` from the `.bib` files
-2. Upload the website files
-3. Deploy the site to GitHub Pages
-
-In the GitHub repository, set **Settings → Pages → Source** to **GitHub Actions**.
-
-## Files That Should Not Be Edited Manually
-
-- `contents/bibliography-content.js`: generated automatically by the bibliography script
-- `contents/site-content.js`: edit only when changing the site-wide name, navigation, or footer year
-- `script.js`: edit only when changing page structure or language behavior
-- `publications.js`: edit only when changing publication interactions
-- `styles.css`: edit only when changing the visual design
-- `.github/workflows/pages.yml`: edit only when changing the deployment workflow
+- `contents/bibliography-content.js` is generated by `scripts/sync_bibliography.py`.
+- `assets/site/orcid-id-mono.svg` is generated by `scripts/make_orcid_icon.py`.
