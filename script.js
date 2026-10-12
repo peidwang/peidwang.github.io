@@ -634,7 +634,7 @@
     "not-found": renderNotFound,
   };
 
-  initializeAnalytics();
+  window.addEventListener("load", initializeAnalytics, { once: true });
   renderHeader();
   pageRenderers[page]?.();
   renderFooter();
